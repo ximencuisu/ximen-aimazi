@@ -33,7 +33,7 @@
 | **关键、核心** (crucial/pivotal/key) | 直接删除或用具体词 |
 | **体现、展示** (showcase/demonstrate) | 直接描述动作 |
 | **强调、突出** (emphasize/highlight) | 直接描述 |
-| **交织、交织** (interplay) | 删除或用具体词 |
+| **交织、交融** (interplay) | 删除或用具体词 |
 | **重要** (significant/vital) | 直接删除 |
 | **生动、活力** (vibrant) | 删除或用具体颜色 |
 | **画卷、织锦** (tapestry) | 直接描述 |
