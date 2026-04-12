@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(node -e \"console.log\\(require\\('C:/Users/Administrator/Desktop/ximen-aimazi-main/ximen-aimazi-main/_meta.json'\\).version\\)\")",
+      "WebSearch",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:docs.cursor.com)",
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:cursor.com)",
+      "WebFetch(domain:github.blog)",
+      "WebFetch(domain:docs.aider.chat)",
+      "WebFetch(domain:aider.chat)",
+      "WebFetch(domain:docs.continue.dev)",
+      "WebFetch(domain:continue.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.google.com)",
+      "WebFetch(domain:docs.google.com)",
+      "Bash(node:*)"
+    ]
+  }
+}

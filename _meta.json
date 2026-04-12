@@ -1,0 +1,7 @@
+{
+  "ownerId": "ximencuisu",
+  "slug": "ximen-aimazi",
+  "version": "1.6.0",
+  "publishedAt": 1773127332892,
+  "changelog": "1.6.0: 记忆系统优化(MEMORY.md/CLAUDE.md/分类记忆文件)、新增4个真相档案(RESOURCES/SUBPLOTS/EMOTIONS/SUSPENSE)、章节索引追踪、活跃/休眠分层机制; 1.5.3: 新增同人创作支持、文风/擦边激活状态标记、关键节点百分比动态化；1.3.0: 新增细纲生成与逻辑审核流程，十步创作流程"
+}
