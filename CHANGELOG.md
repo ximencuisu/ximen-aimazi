@@ -1,5 +1,20 @@
 # 更新日志
 
+## Unreleased
+
+### 吸收 Online-writing-skill 的增强层
+
+在保留 `v1.6.0` 长篇记忆系统基线的前提下，新增以下能力：
+
+- **作家技法参考库** — 新增 `references/author-style-guide.md`，支持将具体作者的节奏、氛围、钩子、人物处理方式挂载到现有文风系统
+- **半部小说续写与卡文救援** — 新增 `references/continuation-engine.md`，支持对已有稿件做 DNA 拆解、卡点诊断和多路线续写
+- **AI 编辑部流水线** — 新增 `references/editorial-pipeline.md`，把立项、架构、出稿、审稿、返修拆成角色化流程
+- **深度审稿清单** — 新增 `references/advanced-audit.md`，补上长篇中后段常见的人设、资源、伏笔、追读风险排查
+- **文风挂载增强** — `assets/STYLE-TEMPLATE.md` 新增 `ACTIVE_AUTHOR_STYLE`，支持“基础文风 + 作者技法参考”的混合模式
+- **主技能文档增强** — `SKILL.md`、`README.md`、`.claude/CLAUDE.md` 同步接入新模式与新输出约定
+
+---
+
 ## v1.6.0 (2026-04-12)
 
 ### 记忆系统增强与长篇优化

@@ -1,6 +1,6 @@
 ---
 name: ximen-aimazi
-description: "小说创作助手，支持从灵感到正文的创作流程。功能：(1) 灵感生成，(2) 世界观构建，(3) 角色塑造，(3.5) 创作参数配置（章节数/女角色/擦边等级），(3.75) 同人作品原著资料（搜索/粘贴），(4) 大纲生成，(5) 细纲规划，(6) 生成细纲，(7) 逻辑审核，(8) 正文章节（交互式文风选择+擦边规范），(9) 一致性审核，(10) 润色评分。支持5种预设文风+5种擦边风格+自定义配置。支持同人创作，可搜索或粘贴原著设定资料。去AI味整合Wikipedia AI写作识别标准与绝对零度写作原则。适用：都市、修仙、玄幻、重生、系统流、同人等多种题材。Use when user asks to write a novel, generate fiction, create stories, or mentions 爽文/小说/写作/创作/同人。"
+description: "小说创作助手，支持从灵感到正文的创作流程。功能：(1) 灵感生成，(2) 世界观构建，(3) 角色塑造，(3.5) 创作参数配置（章节数/女角色/擦边等级），(3.75) 同人作品原著资料（搜索/粘贴），(4) 大纲生成，(5) 细纲规划，(6) 生成细纲，(7) 逻辑审核，(8) 正文章节（交互式文风选择+擦边规范），(9) 一致性审核，(10) 润色评分，新增：(11) 作家风格参考，(12) 半部小说续写/卡文救援，(13) AI编辑部流水线，(14) 深度审稿。支持5种预设文风+5种擦边风格+自定义配置。支持同人创作，可搜索或粘贴原著设定资料。去AI味整合Wikipedia AI写作识别标准与绝对零度写作原则。适用：都市、修仙、玄幻、重生、系统流、同人等多种题材。Use when user asks to write a novel, generate fiction, create stories, or mentions 爽文/小说/写作/创作/同人。"
 license: MIT-0
 compatibility: "适用于 Claude Code、Cursor、OpenAI Codex、GitHub Copilot 等支持 Agent Skills 的工具。需要文件读写权限。"
 metadata:
@@ -8,7 +8,7 @@ metadata:
   version: "1.6.0"
   language: zh-CN
   category: creative-writing
-  tags: "novel, fiction, creative-writing, chinese, 爽文, 小说生成, 创作助手, 去AI味, 细纲, 文风配置, 写作风格, 擦边描写, 情感线, 同人创作"
+  tags: "novel, fiction, creative-writing, chinese, 爽文, 小说生成, 创作助手, 去AI味, 细纲, 文风配置, 写作风格, 擦边描写, 情感线, 同人创作, 续写, 深度审稿, 作家风格"
 ---
 
 # 小说创作助手
@@ -18,7 +18,7 @@ metadata:
 **技能名称**：小说创作助手  
 **技能类型**：创作指导、结构化写作辅助  
 **适用场景**：用户需要创作爽文小说、长篇连载、网络小说  
-**核心价值**：降低创作门槛，提高写作效率，保证作品质量  
+**核心价值**：降低创作门槛，提高写作效率，保证作品质量，并支持长篇续写、风格定调与编辑部式返修
 **语言支持**：中文（默认）、English（见 `SKILL.en.md`）
 
 ## 触发条件
@@ -46,6 +46,34 @@ metadata:
 ```
 
 ---
+
+## 增强模式（可选调用）
+
+这些模式不替代十步主流程，而是在特定场景下叠加调用：
+
+### 模式A：作家风格参考
+
+- 适用：用户要求“像某位作家”“要某种大神味道”“混合两种写法”
+- 核心动作：查阅 `references/author-style-guide.md`，提炼可迁移技法，再写入 `assets/STYLE-TEMPLATE.md`
+- 目标：借方法，不照抄句子
+
+### 模式B：半部小说续写 / 卡文救援
+
+- 适用：用户已有正文或大纲，但写到中途卡住
+- 核心动作：查阅 `references/continuation-engine.md`，先诊断卡点，再给 3 条续写路线
+- 目标：在不推翻前文的前提下，把项目重新点着
+
+### 模式C：AI 编辑部流水线
+
+- 适用：用户想更像工作室一样立项、写稿、审稿、返修
+- 核心动作：查阅 `references/editorial-pipeline.md`，按题材参谋 → 架构编辑 → 章节执行 → 毒舌审稿 → 改稿编辑的顺序推进
+- 目标：稳定产能，减少“写完才发现全错”
+
+### 模式D：深度审稿
+
+- 适用：关键高潮章、卷终章、发布前精修、连续几章质量下滑
+- 核心动作：在基础评分之外，调用 `references/advanced-audit.md`
+- 目标：排查长篇中后段最容易忽略的人设、资源、伏笔和追读风险
 
 ---
 
@@ -645,6 +673,46 @@ metadata:
 | 3 | 去AI味规则 | anti-ai-detection.md 中的基础规则 |
 | 4 | 爽文节奏公式 | 通用爽文写作规律 |
 
+#### 1.5 作家风格挂载（可选）
+
+当用户明确要求“像某位作家”“融合两位作家的技法”或“保留某位作者的节奏感”时，执行以下流程：
+
+```
+步骤1：读取 references/author-style-guide.md
+
+步骤2：选择 1 位主参考 + 1 位辅参考
+       - 主参考决定叙事骨架、节奏、核心气质
+       - 辅参考决定钩子、氛围、人物关系或反套路元素
+
+步骤3：提炼 3-5 个可迁移技法
+       - 节奏
+       - 世界观展开方式
+       - 对话气质
+       - 爽点/悬念设计
+       - 情绪推进方式
+
+步骤4：将作者组合写入 STYLE-TEMPLATE.md 的 ACTIVE_AUTHOR_STYLE
+
+步骤5：把提炼后的技法写入 STYLE-TEMPLATE.md 的自定义文风区域
+       只写“可执行写法”，不写句子级模仿要求
+```
+
+**使用原则**：
+
+- 只借方法，不复刻标志性句子
+- 作者技法参考服从当前题材与平台需求
+- 如作者风格与用户已选文风冲突，以“用户本次选择 + 题材适配”为准
+
+**推荐组合**（详见 `references/author-style-guide.md`）：
+
+| 目标 | 推荐组合 |
+|------|---------|
+| 标准升级爽文 | 天蚕土豆 + 我吃西红柿 |
+| 规则诡异流 | 佛前献花 + 滚开 |
+| 大世界长篇 | 辰东 + 老鹰吃小鸡 |
+| 家族经营流 | 季越人 + 爱潜水的乌贼 |
+| 轻松陪伴流 | 轻泉流响 + 陈词懒调 |
+
 #### 2. 载入记忆文件
 
 **必须读取** `.learnings/` 中的记忆文件：
@@ -877,6 +945,22 @@ metadata:
 | 连续 2 章 < 7.0 | 暂停，检查问题根源 |
 | 去AI味 < 5.0 | 必须进行去AI味修改 |
 
+### 深度审稿（可选）
+
+遇到以下情况时，基础评分不够，必须切到深度审稿：
+
+- 卷终章、高潮章、重大反转章
+- 长篇中后段开始出现设定松动
+- 用户明确要求“毒舌审稿”或“编辑视角挑错”
+- 单章分数不低，但读感仍然不稳
+
+**执行方式**：
+
+1. 先用 `references/quality-check.md` 做基础评分
+2. 再用 `references/advanced-audit.md` 做 24 维排查
+3. 输出 `output/审稿报告.md`
+4. 如需返修，记录到 `output/返修记录.md`
+
 ---
 
 ## 记忆管理系统（真相档案）
@@ -923,12 +1007,17 @@ metadata:
 ```
 output/
 ├── CHAPTERS.md           # 章节索引（自动维护）
+├── 立项单.md             # 可选：编辑部流水线的立项分析
 ├── 创作参数.md           # 创作参数配置（章节数/女角色/擦边等级）
 ├── 提示词.md           # 完善后的创作提示词
 ├── 大纲.md             # 全局章节大纲
 ├── 细纲.md             # 所有章节细纲汇总
+├── 续写诊断.md          # 可选：卡文原因与作品 DNA 拆解
+├── 续写方案.md          # 可选：三条续写路线与未来章节拍
 ├── 逻辑审核报告.md     # 细纲逻辑审核结果
 ├── 质量报告.md          # 章节质量评分追踪
+├── 审稿报告.md          # 可选：深度审稿结果
+├── 返修记录.md          # 可选：返修说明与改动追踪
 ├── 第01章_[章名].md    # 各章节独立文件
 ├── ...
 ├── 人物关系图.md        # Mermaid格式图解
@@ -1016,6 +1105,10 @@ graph TD
 | 输出章节 | 按模板生成到 `output/` |
 | 质量检查 | 使用质量评分系统 |
 | 去AI味 | 使用去AI味指南 |
+| 指定作者风格 | 查 `references/author-style-guide.md` 并写入 `STYLE-TEMPLATE.md` |
+| 半部小说卡文 | 切换到 `references/continuation-engine.md` |
+| 想像编辑部一样推进 | 切换到 `references/editorial-pipeline.md` |
+| 关键章节精修 | 切换到 `references/advanced-audit.md` |
 
 ---
 
@@ -1026,6 +1119,10 @@ graph TD
 | `references/chapter-outline.md` | 章节细纲生成与逻辑审核 |
 | `references/quality-check.md` | 详细质量评分标准 |
 | `references/anti-ai-detection.md` | 去AI味指南 |
+| `references/author-style-guide.md` | 作家技法参考与风格组合 |
+| `references/continuation-engine.md` | 半部小说续写与卡文救援 |
+| `references/editorial-pipeline.md` | AI 编辑部流水线 |
+| `references/advanced-audit.md` | 关键章节的深度审稿清单 |
 | `references/prompt-guide.md` | 提示词完善指南 |
 | `references/plot-structures.md` | 情节结构参考 |
 | `references/examples.md` | 完整示例集 |

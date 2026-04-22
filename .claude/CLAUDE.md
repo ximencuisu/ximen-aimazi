@@ -2,8 +2,8 @@
 
 ## 项目概述
 
-这是 **ximen-aimazi** 小说创作助手项目（v1.6.0），一个 Agent Skills 兼容的中文网络小说生成工具。
-核心价值：从灵感到正文的结构化创作流程，内置去AI味（绝对零度写作）和质量评分系统。
+这是 **ximen-aimazi** 小说创作助手项目（v1.6.x 增强版），一个 Agent Skills 兼容的中文网络小说生成工具。
+核心价值：从灵感到正文的结构化创作流程，内置去AI味（绝对零度写作）、质量评分、作家技法参考、续写救援和编辑部式审稿。
 
 ## 会话恢复
 
@@ -23,6 +23,13 @@
 9. **一致性审核** → 对照 .learnings/ 真相档案
 10. **润色** → 绝对零度写作（禁止比喻、直白心理描写）
 11. **评分** → 8维度加权评分（S/A/B/C/D）
+
+## 可选增强模式
+
+1. **作家技法参考** → 用户指定作者风格时，读取 `references/author-style-guide.md`
+2. **半部小说续写** → 用户卡文或已有半部稿时，读取 `references/continuation-engine.md`
+3. **编辑部流水线** → 用户想像工作室一样推进时，读取 `references/editorial-pipeline.md`
+4. **深度审稿** → 关键章节或精修场景，读取 `references/advanced-audit.md`
 
 ## 记忆文件（真相档案）
 
@@ -57,8 +64,12 @@
 - 文风配置：`assets/STYLE-TEMPLATE.md`（5种预设+自定义）
 - 擦边配置：`assets/EDGE-TEMPLATE.md`（5种风格+自定义）
 - 章节模板：`assets/CHAPTER-TEMPLATE.md` + `assets/CHAPTER-TEMPLATE.female.md`
+- 作家技法参考：`references/author-style-guide.md`
+- 卡文救援：`references/continuation-engine.md`
+- 编辑部流水线：`references/editorial-pipeline.md`
 - 去AI味详细：`references/anti-ai-detection.md`
 - 质量评分：`references/quality-check.md`
+- 深度审稿：`references/advanced-audit.md`
 - 情节结构：`references/plot-structures.md`（10种经典套路）
 
 ## 输出规范
@@ -67,5 +78,10 @@
 - 细纲 → `output/细纲.md`
 - 章节 → `output/第XX章_[章名].md`
 - 创作参数 → `output/创作参数.md`
+- 立项分析 → `output/立项单.md`（可选）
+- 续写诊断 → `output/续写诊断.md`（可选）
+- 续写方案 → `output/续写方案.md`（可选）
+- 深度审稿 → `output/审稿报告.md`（可选）
+- 返修说明 → `output/返修记录.md`（可选）
 - 章节索引 → `output/CHAPTERS.md`（每章生成后更新）
 - 会话状态 → `SESSION.md`（Stop 钩子自动更新）
