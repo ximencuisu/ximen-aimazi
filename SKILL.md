@@ -5,7 +5,7 @@ license: MIT-0
 compatibility: "适用于 Claude Code、Cursor、OpenAI Codex、GitHub Copilot 等支持 Agent Skills 的工具。需要文件读写权限。"
 metadata:
   author: ximencuisu
-  version: "1.6.0"
+  version: "1.9.0"
   language: zh-CN
   category: creative-writing
   tags: "novel, fiction, creative-writing, chinese, 爽文, 小说生成, 创作助手, 去AI味, 细纲, 文风配置, 写作风格, 擦边描写, 情感线, 同人创作, 续写, 深度审稿, 作家风格"

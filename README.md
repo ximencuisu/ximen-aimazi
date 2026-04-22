@@ -3,7 +3,7 @@
 一个面向中文网文创作的 Agent Skill。它把“灵感一句话”拆成可执行的写作流程，帮你完成题材定位、世界观、人物、大纲、细纲、正文、一致性审核、润色和评分，并额外支持作家技法参考、半部小说续写、编辑部式审稿，适合原创爽文、长篇连载和同人创作。
 
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-blue)](https://agentskills.io)
-[![Version](https://img.shields.io/badge/version-v1.6.0-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v1.9.0-green)](./CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## 这是什么
@@ -27,7 +27,7 @@
 
 ## 当前基础能力
 
-当前工作树以 `v1.6.0` 的长篇记忆系统为基线。基础能力的重点不是“多几个模板”，而是把长篇创作真正跑顺：
+当前版本是 `v1.9.0`，并以 `v1.6.0` 的长篇记忆系统为基线继续演进。基础能力的重点不是“多几个模板”，而是把长篇创作真正跑顺：
 
 - 长篇记忆系统升级：新增 `MEMORY.md`、`SESSION.md`、`output/CHAPTERS.md`
 - 分类记忆目录：`memory/` 下拆分反馈、项目、用户、参考四类记忆

@@ -1,6 +1,6 @@
 # 更新日志
 
-## Unreleased
+## v1.9.0 (2026-04-22)
 
 ### 吸收 Online-writing-skill 的增强层
 
