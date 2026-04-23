@@ -1,6 +1,6 @@
 ---
 name: novel-generator
-description: "Novel writing assistant with 8-step creative workflow. Features: (1) Idea generation, (2) World-building, (3) Character design, (4) Outline creation, (5) Chapter writing, (6) Consistency audit, (7) Polish and anti-AI detection, (8) Quality scoring. For genres: fantasy, urban, cultivation, rebirth, system-flow. Use when user asks to write a novel, generate fiction, create stories."
+description: "Novel writing assistant with a structured workflow from idea to outline, chapter planning, drafting, consistency audit, polish, and scoring. The full 12-step operational workflow, fanfic preparation, project parameter collection, and advanced review modes are documented in SKILL.md."
 license: MIT-0
 compatibility: "Works with Claude Code, Cursor, OpenAI Codex, GitHub Copilot, and other Agent Skills compatible tools. Requires file read/write permissions."
 metadata:
@@ -30,14 +30,15 @@ Automatically triggers when user mentions:
 
 ---
 
-## 8-Step Creative Workflow
+## Workflow Overview
+
+This English file is a condensed overview.
+For the full 12-step workflow and zh-CN operational details, see `SKILL.md`.
 
 ```
-Idea → World-building → Characters → Outline → Chapter
+Idea → World-building → Characters → Outline → Chapter Plan → Draft
                                                       ↓
-Output ← Quality Check ← Polish ← Audit ← Writing
-              ↑                        ↓
-         Memory System ←←←←←←←←←←←←←
+Output ← Scoring ← Polish ← Consistency Audit ← Memory System
 ```
 
 ---

@@ -10,6 +10,7 @@
 ## 项目 (Project)
 - [项目状态](memory/project_status.md) — 当前进行到哪一步，已完成/待完成
 - [创作参数](memory/project_params.md) — 章节数/女角色/擦边等级等核心参数
+- [文风圣经](memory/project_style.md) — 全书长期文风、作家技法参考、卷级微调规则
 - [题材库](memory/project_genres.md) — 已使用过的题材类型和爽点模式
 
 ## 用户 (User)
