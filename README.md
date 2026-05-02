@@ -1,103 +1,111 @@
 # ximen-aimazi
 
-一个面向中文网文创作的 Agent Skill。它把“灵感一句话”拆成可执行的写作流程，帮你完成题材定位、世界观、人物、大纲、细纲、正文、一致性审核、润色和评分，并额外支持作家技法参考、半部小说续写、编辑部式审稿，适合原创爽文、长篇连载和同人创作。
+中文网文创作 Agent Skill — 从灵感到成稿的结构化创作 + 去 AI 味 + 深度技法。
 
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-blue)](https://agentskills.io)
-[![Version](https://img.shields.io/badge/version-v1.9.0-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v2.0.0-green)](./CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## 这是什么
 
-`ximen-aimazi` 不是单次生成提示词模板，而是一套可持续推进小说项目的写作工作流：
+`ximen-aimazi` 是一套可持续推进长篇网络小说项目的写作工作流，不是单次生成提示词模板。
 
-- 从一句话方向扩展成完整创作方案
-- 按固定步骤推进大纲、细纲、正文和审校
-- 用记忆系统维护角色、伏笔、地点和世界观一致性
-- 支持长篇项目的跨会话恢复与章节追踪
-- 内置去 AI 味规范、逻辑审核、细纲迭代与质量评分
-
-如果你在 Claude Code、Cursor、OpenAI Codex、GitHub Copilot 或其他支持 Agent Skills 的工具里写中文小说，这个仓库就是可以直接挂载使用的技能包。
+- 一句话方向 → 完整创作方案 → 大纲 → 细纲 → 正文 → 审校 → 评分
+- 记忆系统维护角色、伏笔、地点、资源、情感线的一致性
+- 跨会话恢复，断点续写不丢上下文
+- 内置去 AI 味白描规范 + 三遍法 + 7 维质量评分
+- 作家技法参考、卡文救援、编辑部流水线、深度审稿四种增强模式
 
 ## 适合什么场景
 
-- 原创网文：都市、修仙、玄幻、重生、系统流、末世、游戏等
-- 长篇连载：50 到 500 章的持续创作
-- 同人创作：支持补充原著资料，再按设定继续写
-- 人机协作：由 AI 负责流程推进，你负责确认方向和关键取舍
-
-## 当前基础能力
-
-当前版本是 `v1.9.0`，并以 `v1.6.0` 的长篇记忆系统为基线继续演进。基础能力的重点不是“多几个模板”，而是把长篇创作真正跑顺：
-
-- 长篇记忆系统升级：新增 `MEMORY.md`、`SESSION.md`、`output/CHAPTERS.md`
-- 分类记忆目录：`memory/` 下拆分反馈、项目、用户、参考四类记忆
-- 真相档案增强：围绕资源、子剧情、情感线、悬念池补齐跟踪文件
-- 分层管理思路：活跃、休眠、归档分层，减少长篇写作时的上下文膨胀
-- 会话恢复能力：重新打开项目时，可以从上次进度继续推进
-
-完整版本记录见 [CHANGELOG.md](./CHANGELOG.md)。
-
-## 新增强层
-
-这次迭代吸收了 `Online-writing-skill-main` 里最有价值的三类能力，但没有推翻 `ximen-aimazi` 原有的记忆系统：
-
-- 作家技法参考：不做句子级模仿，而是提炼节奏、世界观、钩子和对话气质
-- 半部小说续写：针对卡文、断更、后半程跑偏，先诊断再给多条续写路线
-- AI 编辑部流水线：把立项、搭大纲、写稿、审稿、返修拆成角色化流程
-- 深度审稿：在基础评分外，再做长篇中后段更需要的 24 维排雷
+- **原创网文**：都市、修仙、玄幻、重生、系统流、末世、规则怪谈
+- **长篇连载**：50 到 500+ 章的持续创作
+- **同人创作**：搜索/粘贴原著设定，再按约束续写
+- **人机协作**：AI 推流程，你拍方向和关键取舍
 
 ## 核心能力
 
-- 十二步实战流程：灵感、世界观、角色、参数、同人资料（如适用）、大纲、细纲规划、生成细纲、逻辑审核、正文、一致性审核、润色与评分
-- 参数配置：在正式出稿前询问章节数、女角色数量、擦边等级等关键参数
-- 文风控制：预设文风库 + 项目级文风圣经，适合长篇连载稳定输出
-- 擦边规范：5 种预设风格加自定义规则
-- 细纲先行：按批次滚动生成，支持多轮返修、人工介入和冻结
-- 逻辑审核：检查时间线、空间线、人物线、设定线、伏笔线，并给出人工可选方案
-- 去 AI 味：整合 Wikipedia AI 写作识别经验与绝对零度写作原则
-- 质量评分：对章节或成稿进行结构化评估
-- 作家风格挂载：支持把具体作者技法提炼后写入项目级文风圣经
-- 续写救援：支持半部小说诊断、后续路线规划和样章续写
-- 角色化协作：支持按“题材参谋 / 架构编辑 / 章节执行 / 毒舌审稿 / 改稿编辑”推进
+### 12 步主流程
+
+| Phase | 内容 |
+|-------|------|
+| 1 | 灵感生成 — 一句话扩展成 3 套可选方案 |
+| 2 | 世界观构建 — 力量体系、社会结构、核心规则 |
+| 3 | 角色塑造 — 主角 + 配角 + 反派层级 + 三层标签反差 |
+| 4 | 创作参数配置 — 章节数 / 女角色数 / 擦边等级 / 文风 |
+| 5 | 同人原著资料（如适用）— 搜索或粘贴，建立约束 |
+| 6 | 大纲生成 — 三幕式 + 卷级结构 + 关键节点 |
+| 7 | 细纲规划 — 批次划分、冻结条件、人工介入点 |
+| 8 | 生成细纲 — 当前批次的可执行章节计划 |
+| 9 | 逻辑审核与人工介入 — 审核当前批次，给出方案选项 |
+| 10 | 正文章节 — 按已冻结细纲写正文 + 去 AI 味规范 |
+| 11 | 一致性审核 — 剧情 / 角色 / 设定层面检查 |
+| 12 | 润色与评分 — 语言质量层面 + 7 维 10 分制评分 |
+
+### 文风控制
+
+5 种预设文风（A-E）+ 作家技法参考（1 主 1 辅）分层叠加，写入 `memory/project_style.md` 全书生效。
+
+| 文风 | 特点 | 适用题材 |
+|------|------|---------|
+| A 热血爽文风 | 短句密集、节奏快、打脸干脆 | 玄幻、高武、升级流 |
+| B 都市现实风 | 口语化、生活感、细节真实 | 都市、悬疑、规则怪谈 |
+| C 古风仙侠风 | 半文半白、意境优先、节奏沉稳 | 仙侠、古言、玄侠 |
+| D 悬疑惊悚风 | 氛围压抑、悬念迭起、细节暗示 | 悬疑、规则怪谈、末世 |
+| E 轻松日常风 | 吐槽密度高、节奏舒缓、互动有爱 | 种田、御兽、日常 |
+
+### 去 AI 味
+
+- 核心规范：段落不超 4 行 / 动作 + 对话 + 情绪循环 / 短句优先 / Show Don't Tell
+- 禁用词表 + 比喻禁令 + 章末禁止总结升华
+- 三遍法：去泛化 → 去书面化 → 回人味
+- 7 维评分中"去 AI 味"占 7% 权重，独立打分
+
+### 质量评分（7 维 10 分制）
+
+| 维度 | 权重 |
+|------|------|
+| 爽点设置 | 25% |
+| 情节连贯性 | 20% |
+| 节奏把控 | 15% |
+| 悬念钩子 | 15% |
+| 对话质量 | 10% |
+| 角色塑造 | 8% |
+| 去 AI 味 | 7% |
+
+出稿门槛：日更 ≥ 7.0 / 高潮章 ≥ 8.0 / 卷终章 ≥ 8.2
+
+### 4 种增强模式
+
+| 模式 | 触发条件 | 作用 |
+|------|---------|------|
+| 作家风格参考 | "像某位作家" | 查阅 `references/author-style-guide.md`，提炼可迁移技法 |
+| 半部续写 / 卡文救援 | "卡文了" | 查阅 `references/continuation-engine.md`，诊断 + 3 条路线 |
+| AI 编辑部流水线 | "像工作室一样立项" | 查阅 `references/editorial-pipeline.md`，按岗位推进 |
+| 深度审稿 | 关键高潮章 / 质量下滑 | 查阅 `references/advanced-audit.md`，排长篇隐患 |
 
 ## 快速开始
 
-### 1. 安装
-
-通过 ClawdHub：
+### 安装
 
 ```bash
-clawdhub install ximen-aimazi
-```
-
-手动安装：
-
-```bash
+# 手动安装
 git clone https://github.com/ximencuisu/ximen-aimazi.git ~/.openclaw/skills/ximen-aimazi
 ```
 
-如果你在本地项目里直接使用，把 `ximen-aimazi/` 放进项目的 `skills/` 目录即可。
+或放入项目的 `skills/` 目录。
 
-### 2. 初始化新小说
-
-macOS / Linux:
+### 初始化新小说
 
 ```bash
+# macOS / Linux
 ./scripts/init-novel.sh 我的小说名 --clean
-```
 
-Windows:
-
-```bat
+# Windows
 .\scripts\init-novel.bat 我的小说名 --clean
 ```
 
-初始化后，仓库会准备好输出目录和记忆文件，方便从零开始一个新项目。
-如果当前工作区已经绑定了另一部小说，使用 `--clean` 才会重置项目级文件并切换到新项目。
-
-### 3. 直接开始对话
-
-你可以把它交给支持 Agent Skills 的 AI 工具，然后像这样开题：
+### 开始对话
 
 ```text
 帮我用 ximen-aimazi 做一部 100 章都市修仙小说。
@@ -105,29 +113,11 @@ Windows:
 先给我 3 套创意方案，再让我选。
 ```
 
-同人场景也可以直接说明：
+同人场景：
 
 ```text
-这是斗罗大陆同人。
-先整理原著关键设定和人物关系，再给我大纲，不要急着写正文。
+这是斗罗大陆同人。先整理原著关键设定和人物关系，再给我大纲，不要急着写正文。
 ```
-
-## 工作方式
-
-主流程按 12 步推进，其中“同人资料整理”只在同人创作场景下启用。
-
-1. 灵感生成：把一句话方向扩展成 3 套可选方案
-2. 世界观构建：整理力量体系、社会结构、核心规则
-3. 角色塑造：主角、对手、盟友、情感线角色
-4. 创作参数配置：章节数、角色数量、擦边等级
-5. 同人资料整理：搜索或粘贴原著设定，建立约束
-6. 大纲生成：确定长线结构和关键转折
-7. 细纲规划：决定卷结构、批次划分、人工介入点和冻结条件
-8. 生成细纲：按批次拆成可执行章节计划
-9. 逻辑审核与人工介入：检查当前批次，给出方案选项和自定义入口
-10. 正文章节：按已冻结且已确认的细纲写正文
-11. 一致性审核：回看记忆文件，补齐事实更新
-12. 润色与评分：去 AI 味、修句、打分
 
 ## 目录结构
 
@@ -138,116 +128,70 @@ ximen-aimazi/
 ├── README.md
 ├── CHANGELOG.md
 ├── LICENSE
+├── _meta.json                  # 版本与发布信息
 ├── MEMORY.md                   # 记忆索引
 ├── SESSION.md                  # 跨会话恢复文件
 ├── .claude/
 │   ├── CLAUDE.md               # 项目级 AI 指令
 │   └── settings.local.json     # Stop hook 等本地配置
 ├── assets/
-│   ├── PROMPT-TEMPLATE.md
-│   ├── CHAPTER-TEMPLATE.md
+│   ├── STYLE-TEMPLATE.md       # 5 种预设文风库
+│   ├── EDGE-TEMPLATE.md        # 5 种擦边风格模板
+│   ├── CHAPTER-TEMPLATE.md     # 章节模板
 │   ├── CHAPTER-TEMPLATE.female.md
-│   ├── STYLE-TEMPLATE.md
-│   ├── EDGE-TEMPLATE.md
-│   ├── LEARNINGS-TEMPLATE.md
-│   └── workspace/             # init-novel 使用的项目级模板
-├── references/
-│   ├── anti-ai-detection.md
-│   ├── advanced-audit.md
-│   ├── author-style-guide.md
-│   ├── chapter-outline.md
-│   ├── continuation-engine.md
-│   ├── editorial-pipeline.md
-│   ├── examples.md
-│   ├── interactive-prompts.md
-│   ├── plot-structures.md
-│   ├── prompt-guide.md
-│   └── quality-check.md
+│   ├── PROMPT-TEMPLATE.md      # 提示词空白模板
+│   ├── LEARNINGS-TEMPLATE.md   # 真相档案模板
+│   └── workspace/              # init-novel 使用的项目级模板
+├── references/                 # 按需加载的参考资料（26 个文件）
+│   ├── anti-ai-writing.md      # 去 AI 味完整指南
+│   ├── anti-ai-detection.md    # 去 AI 味检测清单
+│   ├── banned-words.md         # 禁用词表
+│   ├── quality-check.md        # 7 维 10 分制评分系统
+│   ├── quality-checklist.md    # 质量 + 检查清单
+│   ├── author-style-guide.md   # 作家技法参考库
+│   ├── hook-techniques.md      # 钩子技法大全
+│   ├── continuation-engine.md  # 半部续写引擎
+│   ├── editorial-pipeline.md   # 编辑部流水线
+│   ├── advanced-audit.md       # 深度审稿清单
+│   └── ...                     # 更多参考资料
 ├── memory/                     # 分类记忆
-│   ├── feedback_*.md
-│   ├── project_*.md
-│   ├── reference_*.md
-│   └── user_profile.md
-├── .learnings/                 # 小说事实档案
+├── .learnings/                 # 小说事实档案（角色/伏笔/地点等）
 ├── output/                     # 大纲、细纲、章节与索引输出
-└── scripts/
-    ├── init-novel.sh
-    ├── init-novel.ps1
-    ├── init-novel.bat
-    ├── word-count.sh
-    ├── word-count.ps1
-    └── word-count.bat
+└── scripts/                    # 初始化与字数统计脚本
 ```
 
-## 关键文件说明
+## v2.0.0 主要变更
 
-| 文件 | 作用 |
-| --- | --- |
-| `SKILL.md` | 技能主说明，定义整个创作流程和执行规范 |
-| `MEMORY.md` | 记忆入口索引，告诉代理应该去哪里找上下文 |
-| `SESSION.md` | 当前小说处在哪个阶段，下次会话从哪里继续 |
-| `.claude/CLAUDE.md` | 项目级操作约束，提醒代理先读进度再继续 |
-| `.learnings/` | 世界观、角色、地点、伏笔、错误等小说事实档案 |
-| `memory/` | 用户偏好、项目参数、参考模板等辅助记忆 |
-| `memory/project_style.md` | 项目级文风圣经，记录整本书长期有效的文风与作家技法参考 |
-| `output/CHAPTERS.md` | 章节索引，记录章节状态、字数和推进情况 |
-| `output/细纲迭代记录.md` | 记录每个细纲批次的版本、问题与返修决策 |
-| `output/细纲干预决策.md` | 记录每轮细纲审核后提供的方案、推荐项和用户选择 |
-| `output/细纲冻结清单.md` | 标记哪些章节细纲已经冻结、可进入正文 |
-| `references/author-style-guide.md` | 作家技法参考库，用来做风格定调 |
-| `references/continuation-engine.md` | 半部小说续写与卡文救援 |
-| `references/editorial-pipeline.md` | AI 编辑部式出稿与返修流程 |
-| `references/advanced-audit.md` | 关键章节深度审稿清单 |
+- **去 AI 味模块全面重构**：职责分离（detection=识别 / writing=解决），三遍法 + 改写范例库
+- **评分体系统一**：从三套互不兼容的评分合并为 7 维 10 分制（`quality-check.md`）
+- **文风预设统一**：A-E 五种文风名称与 `STYLE-TEMPLATE.md` 完全对齐
+- **Phase 11/12 分工明确**：Phase 11=一致性审核（剧情/角色/设定），Phase 12=语言质量（去 AI 味/润色/评分）
+- **内容去重**：SKILL.md 瘦身约 30%，内联内容改为引用 references/ 对应文件
+- **作家风格映射表重构**：按文风 A-E 分组，明确分层叠加关系
+- **CHARACTERS 写入时机对齐**：从"必写"改为"必检查，有变化则写"
+- **17 项冗余/矛盾/边界模糊问题修复**
 
-## 输出约定
-
-这个技能默认把核心产物落到 `output/` 目录：
-
-- `output/提示词.md`
-- `output/创作参数.md`
-- `output/立项单.md`（可选）
-- `output/大纲.md`
-- `output/细纲.md`
-- `output/细纲迭代记录.md`
-- `output/细纲干预决策.md`
-- `output/细纲冻结清单.md`
-- `output/批次细纲/第001-005章_v1.md`（按需生成）
-- `output/续写诊断.md`（可选）
-- `output/续写方案.md`（可选）
-- `output/审稿报告.md`（可选）
-- `output/返修记录.md`（可选）
-- `output/第XX章_[章名].md`
-- `output/CHAPTERS.md`
-
-这样做的好处是，AI 不是“一次性吐一篇文”，而是把整部小说当成可持续维护的项目来管理。
-
-## 兼容工具
-
-- Claude Code
-- Cursor
-- OpenAI Codex
-- GitHub Copilot
-- OpenClaw
-- 其他支持 Agent Skills 的工具
+完整版本记录见 [CHANGELOG.md](./CHANGELOG.md)。
 
 ## 使用建议
 
-- 先定题材和卖点，再让 AI 生成 3 套方案，不要一上来就直接写正文
-- 长篇项目尽量保留 `SESSION.md`、`MEMORY.md` 和 `output/CHAPTERS.md`
-- 写同人时先补原著资料，再生成大纲，能显著降低设定穿帮
-- 如果你在写长篇，建议在参数配置后先建立 `memory/project_style.md`，再开始大纲、细纲和正文
-- 如果你想借大神写法，优先选 `1 个主参考 + 1 个辅参考`，不要一口气混 4 种风格
-- 如果你已经卡在半部，先跑续写诊断，不要盲目硬写下一章
+- 先定题材和卖点，不要一上来就写正文
+- 长篇项目保留 `SESSION.md`、`MEMORY.md` 和 `output/CHAPTERS.md`
+- 写同人时先补原著资料再生成大纲
+- 借大神写法优先选 1 主 + 1 辅，不要混 4 种风格
+- 卡文时先跑续写诊断，不要盲目硬写
 
 ## 相关文档
 
-- 中文技能文档：[SKILL.md](./SKILL.md)
-- 英文说明：[SKILL.en.md](./SKILL.en.md)
-- 作家技法参考：[references/author-style-guide.md](./references/author-style-guide.md)
-- 续写引擎：[references/continuation-engine.md](./references/continuation-engine.md)
-- 编辑部流水线：[references/editorial-pipeline.md](./references/editorial-pipeline.md)
-- 深度审稿：[references/advanced-audit.md](./references/advanced-audit.md)
-- 更新日志：[CHANGELOG.md](./CHANGELOG.md)
+| 文档 | 说明 |
+|------|------|
+| [SKILL.md](./SKILL.md) | 中文技能文档（完整流程与规范） |
+| [SKILL.en.md](./SKILL.en.md) | 英文技能文档 |
+| [references/author-style-guide.md](./references/author-style-guide.md) | 作家技法参考库 |
+| [references/continuation-engine.md](./references/continuation-engine.md) | 续写引擎 |
+| [references/editorial-pipeline.md](./references/editorial-pipeline.md) | 编辑部流水线 |
+| [references/advanced-audit.md](./references/advanced-audit.md) | 深度审稿 |
+| [CHANGELOG.md](./CHANGELOG.md) | 更新日志 |
 
 ## 许可证
 
