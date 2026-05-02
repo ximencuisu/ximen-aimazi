@@ -1,0 +1,18 @@
+# 系统
+.DS_Store
+Thumbs.db
+
+# IDE / 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code 运行时数据
+.claude/sessions/
+
+# 生成输出（可选择性提交，但默认保留）
+# 如果只想保留模板，取消下面一行的注释：
+# output/第*.md
+
+backup/
