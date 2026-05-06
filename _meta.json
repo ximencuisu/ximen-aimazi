@@ -1,0 +1,7 @@
+{
+  "ownerId": "ximencuisu",
+  "slug": "ximen-aimazi",
+  "version": "2.1.0",
+  "publishedAt": 1773127332892,
+  "changelog": "2.1.0: style-modules.md拆分为15个独立文件+索引; SKILL.md精简至406行; 新增女频专项模块(3文件); 新增平台适配指南; 补强chapter-outline.md; 更新interactive-prompts.md为12步流程; 扩充examples.md; 新增plugin.json; 修复路径不一致; 1.9.0: 新增作家技法参考、半部小说续写引擎、AI编辑部流水线、深度审稿清单，并增强文风挂载; 1.6.0: 记忆系统优化(MEMORY.md/CLAUDE.md/分类记忆文件)、新增4个真相档案(RESOURCES/SUBPLOTS/EMOTIONS/SUSPENSE)、章节索引追踪、活跃/休眠分层机制; 1.5.3: 新增同人创作支持、文风/擦边激活状态标记、关键节点百分比动态化"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ximen-aimazi",
+  "version": "2.1.0",
+  "description": "中文网文创作全流程助手——从灵感到成稿的结构化创作+去AI味+深度技法",
+  "author": "ximencuisu",
+  "license": "MIT",
+  "keywords": ["网文", "小说", "写作", "创作", "去AI味", "爽文", "女频", "长篇"],
+  "main": "SKILL.md",
+  "references": "references/",
+  "assets": "assets/",
+  "scripts": "scripts/"
+}
