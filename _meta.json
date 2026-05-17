@@ -1,7 +1,7 @@
 {
   "ownerId": "ximencuisu",
   "slug": "ximen-aimazi",
-  "version": "2.2.0",
-  "publishedAt": 1747440000000,
-  "changelog": "2.2.0: 续写功能全面增强，新增CP1-CP3准备阶段、风格指纹比对、不可改动清单门控"
+  "version": "2.2.1",
+  "publishedAt": 1747526400000,
+  "changelog": "2.2.1: 续写交互增强，12个决策点+两种交互模式"
 }

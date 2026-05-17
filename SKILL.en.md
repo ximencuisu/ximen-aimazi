@@ -5,7 +5,7 @@ license: MIT
 compatibility: "Works with Claude Code, Cursor, OpenAI Codex, GitHub Copilot, and other Agent Skills compatible tools. Requires file read/write permissions."
 metadata:
   author: ximencuisu
-  version: "2.2.0"
+  version: "2.2.1"
   language: en
   category: creative-writing
   tags: "novel, fiction, creative-writing, story-generation, web-novel"

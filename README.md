@@ -3,7 +3,7 @@
 中文网文创作 Agent Skill — 从灵感到成稿的结构化创作 + 去 AI 味 + 深度技法 + 续写引擎。
 
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-blue)](https://agentskills.io)
-[![Version](https://img.shields.io/badge/version-v2.2.0-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v2.2.1-green)](./CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## 这是什么
@@ -15,7 +15,8 @@
 - 跨会话恢复，断点续写不丢上下文
 - 内置去 AI 味 6 门禁 + 三遍法 + 7 维质量评分
 - 作家技法参考、续写引擎、编辑部流水线、深度审稿四种增强模式
-- **v2.2.0 新增**：续写功能全面增强 — CP1-CP3 准备阶段、风格指纹比对、不可改动清单门控
+- **v2.2.0**：续写功能全面增强 — CP1-CP3 准备阶段、风格指纹比对、不可改动清单门控
+- **v2.2.1 新增**：续写交互增强 — 12 个决策点让你全程掌控续写方向，两种交互模式
 
 ## 适合什么场景
 
@@ -87,7 +88,7 @@
 | 📖 标准模式（默认） | 正常创作流程 | 完整 Phase 1-12 |
 | 🔬 深度模式 | 精细打磨大纲+编辑部流水线 | 完整 Phase 1-12 + 编辑部流水线 + 深度审稿 |
 
-## 🆕 v2.2.0 续写引擎
+## 🆕 v2.2 续写引擎
 
 ### 5 种续写场景
 
@@ -137,6 +138,30 @@
 ### 产出物来源追溯
 
 每个续写流程文件标注来源（`原作提取` / `AI生成` / `AI续写` / `用户修改`），支持事后审稿追溯。
+
+### 12 个交互决策点（v2.2.1 新增）
+
+续写流程不是 AI 自动推进后只让你确认，而是全程嵌入交互决策点，让你和 AI 一起讨论、掌控方向：
+
+| # | 决策点 | 阶段 | 快速模式 |
+|---|--------|------|---------|
+| ① | 提取结果审核 | CP1 | 跳过 |
+| ② | 关键设定修正 | CP1 | 跳过 |
+| ③ | 卡点诊断讨论 | CP2 | 跳过 |
+| ④ | **路线选择与调整** | CP2 | **必停** |
+| ⑤ | 节拍审核 | CP2 | 跳过 |
+| ⑥ | **锁定理由展示** | CP3 | **必停** |
+| ⑦ | 补充遗漏条目 | CP3 | 跳过 |
+| ⑧ | 衔接点确认 | Phase 7 | 跳过 |
+| ⑨ | 首章方向选择 | Phase 8 | 跳过 |
+| ⑩ | **Sample Chapter 讨论** | Phase 10 | **必停** |
+| ⑪ | **每章关键情节点确认** | Phase 10 | **首章必停** |
+| ⑫ | 审核结果讨论 | Phase 11-12 | 低于门槛时停 |
+
+**两种交互模式**：
+- 🗨️ **讨论模式**（默认）：每个决策点都展示选项+讨论
+- ⚡ **快速模式**：只在4个关键决策点暂停，其余自动推进
+- 随时说"切换到快速模式"/"切换到讨论模式"即可切换
 
 ## 增强模式
 
@@ -191,11 +216,12 @@ git clone https://github.com/ximencuisu/ximen-aimazi.git
 
 ## 参考文件体系
 
-### 续写模块（v2.2.0 新增）
+### 续写模块（v2.2 新增）
 
 | 文件 | 内容 | 何时加载 |
 |------|------|---------|
 | `continuation-engine.md` | 续写引擎完整规范（14章） | 续写模式激活时 |
+| `continuation-interaction.md` | 12个交互决策点模板 | 续写模式激活时 |
 | `reverse-parsing-guide.md` | CP1 反向解析操作指南 | CP1 阶段 |
 | `style-fingerprint-guide.md` | 风格指纹比对与漂移控制 | Phase 11-12（续写） |
 
@@ -274,12 +300,13 @@ ximen-aimazi/
 │   ├── PROMPT-TEMPLATE.md      # 提示词空白模板
 │   ├── LEARNINGS-TEMPLATE.md   # 真相档案模板
 │   └── workspace/              # init-novel 使用的项目级模板
-├── references/                 # 按需加载的参考资料（46 个文件）
+├── references/                 # 按需加载的参考资料（47 个文件）
 │   ├── style-*.md              # 题材风格模块（11 个）
 │   ├── writing-*.md            # 写作技法模块（2 个）
-│   ├── continuation-engine.md  # 续写引擎（v2.2.0 重写）
-│   ├── reverse-parsing-guide.md # CP1 反向解析指南（v2.2.0 新增）
-│   ├── style-fingerprint-guide.md # 风格指纹比对指南（v2.2.0 新增）
+│   ├── continuation-engine.md  # 续写引擎（v2.2 重写）
+│   ├── continuation-interaction.md # 续写交互决策点（v2.2.1 新增）
+│   ├── reverse-parsing-guide.md # CP1 反向解析指南（v2.2 新增）
+│   ├── style-fingerprint-guide.md # 风格指纹比对指南（v2.2 新增）
 │   ├── market-*.md             # 商业化模块
 │   ├── creative-*.md           # 创作策略模块
 │   ├── female-*.md             # 女频专项模块（3 个）
@@ -299,6 +326,7 @@ ximen-aimazi/
 - 借大神写法优先选 1 主 + 1 辅，不要混 4 种风格
 - 卡文时先跑续写诊断，不要盲目硬写
 - 续写外稿时务必完成 CP3 不可改动清单确认，避免推翻原作设定
+- 续写时选择讨论模式可以全程掌控方向，快速模式适合信任 AI 推进时使用
 - 女频创作优先加载 `female-genre-guide.md` 等女频专项模块
 
 ## 许可证
