@@ -10,6 +10,10 @@ Thumbs.db
 
 # Claude Code 运行时数据
 .claude/sessions/
+.claude/settings.local.json
+
+# 平台开发过程文件（不作为通用 Skill 分发的一部分）
+.trae/
 
 # Kiro 开发过程文件（spec/tasks，不属于 Skill 本身）
 .kiro/

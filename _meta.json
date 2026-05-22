@@ -1,7 +1,7 @@
 {
   "ownerId": "ximencuisu",
   "slug": "ximen-aimazi",
-  "version": "2.3.0",
-  "publishedAt": 1747526400000,
-  "changelog": "2.3.0: 全流程交互决策点，20个DP+12个CP决策点，两种交互模式覆盖完整创作流程"
+  "version": "2.3.3",
+  "publishedAt": 1779379200000,
+  "changelog": "2.3.3: 通用技能包整改，独立小说工作区、模板补齐、路径统一、字数统计修复与分发清理"
 }

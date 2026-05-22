@@ -14,7 +14,7 @@ type: reference
 | `CHAPTER-TEMPLATE.female.md` | `assets/` | 女频（言情）章节模板 | 女频小说时使用 |
 | `PROMPT-TEMPLATE.md` | `assets/` | 提示词模板（完整版+快速版） | 生成创作提示词时 |
 | `LEARNINGS-TEMPLATE.md` | `assets/` | 记忆文件模板 | 初始化新.learnings文件时 |
-| `workspace/` | `assets/` | 项目级工作区模板（`.learnings` / `SESSION.md` / `memory/project_*.md` / `output/*.md`，含细纲迭代记录、干预决策与冻结清单） | `init-novel` 初始化或 `--clean` 重置时 |
+| `workspace/` | `assets/` | 项目级工作区模板（`.learnings` / `SESSION.md` / `memory/project_*.md` / `设定/` / `大纲/` / `追踪/`，含大纲、细纲、伏笔、时间线、冻结清单） | `init-novel` 初始化或 `--clean` 重置时 |
 
 ## 参考文档
 

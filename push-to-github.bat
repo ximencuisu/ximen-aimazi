@@ -1,27 +1,19 @@
 @echo off
 chcp 65001 >nul
 echo ========================================
-echo    推送到 GitHub
+echo    push-to-github.bat is deprecated
 echo ========================================
 echo.
-echo 请先在 GitHub 创建仓库：
-echo https://github.com/new
-echo   - Repository name: ximen-aimazi
-echo   - 不要勾选 "Add a README file"
+echo This repository should be reviewed before publishing.
+echo Please run these commands manually after checking changes:
 echo.
-pause
+echo   git status
+echo   git diff
+echo   git add ^<files^>
+echo   git commit -m "chore: update ximen-aimazi skill package"
+echo   git push
 echo.
-cd /d "%~dp0"
-git remote set-url origin https://github.com/ximencuisu/ximen-aimazi.git
-git add .
-git commit -m "feat: v1.2.0 - 小说创作助手，去AI味重大升级"
-git push -u origin main
-echo.
-echo ========================================
-echo    推送完成！
-echo ========================================
-echo.
-echo 访问你的仓库：
-echo https://github.com/ximencuisu/ximen-aimazi
+echo The old script used "git add ." and a stale commit message.
+echo It has been disabled to avoid accidental publishing of local workspaces.
 echo.
 pause

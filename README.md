@@ -3,7 +3,7 @@
 中文网文创作 Agent Skill — 从灵感到成稿的结构化创作 + 去 AI 味 + 深度技法 + 续写引擎。
 
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-blue)](https://agentskills.io)
-[![Version](https://img.shields.io/badge/version-v2.3.0-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v2.3.3-green)](./CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## 这是什么
@@ -18,6 +18,7 @@
 - **v2.2.0**：续写功能全面增强 — CP1-CP3 准备阶段、风格指纹比对、不可改动清单门控
 - **v2.2.1**：续写交互增强 — 12 个决策点让你全程掌控续写方向，两种交互模式
 - **v2.3.0 新增**：全流程交互决策点 — 主流程 20 个决策点 + 续写流程 12 个决策点，讨论/快速双模式覆盖从灵感到成稿的每一步
+- **v2.3.3**：通用技能包整改 — 独立小说工作区、模板补齐、正文/追踪路径统一、字数统计修复与分发清理
 
 ## 适合什么场景
 
@@ -85,13 +86,13 @@
 
 | 模式 | 适用场景 | 流程 |
 |------|---------|------|
-| 🚀 快速模式 | 只想快速生成一章试试 | 跳过 Phase 1-3 详细设定，直接进入 Phase 6-10 |
+| 🚀 快速模式 | 想减少讨论、加快推进 | 自动采用 AI 推荐方案推进非必停决策点；DP1-2、DP4-1、DP9-1、首章 DP10-2 仍必须停下确认 |
 | 📖 标准模式（默认） | 正常创作流程 | 完整 Phase 1-12 |
 | 🔬 深度模式 | 精细打磨大纲+编辑部流水线 | 完整 Phase 1-12 + 编辑部流水线 + 深度审稿 |
 
 ## 🆕 v2.3 全流程交互决策点
 
-创作流程不是 AI 自动推进后只让你确认，而是全程嵌入交互决策点，让你和 AI 一起讨论、掌控方向。v2.3.0 将交互决策点从续写流程扩展到主流程，实现从灵感到成稿的全流程覆盖。
+创作流程不是 AI 自动推进后只让你确认，而是全程嵌入交互决策点，让你和 AI 一起讨论、掌控方向。v2.3 系列将交互决策点从续写流程扩展到主流程，实现从灵感到成稿的全流程覆盖。
 
 ### 两种交互模式
 
@@ -238,6 +239,15 @@ git clone https://github.com/ximencuisu/ximen-aimazi.git
 .\scripts\init-novel.bat 我的小说名 --clean
 ```
 
+默认会在 `ximen-aimazi/` 的同级目录创建独立小说工作区 `../我的小说名/`，不会直接把用户项目写进 skill 安装目录。也可以显式指定：
+
+```bash
+./scripts/init-novel.sh 我的小说名 --workspace ../novels/我的小说名 --clean
+.\scripts\init-novel.bat 我的小说名 --workspace ..\novels\我的小说名 --clean
+```
+
+章节正文统一写入工作区的 `正文/`，章节索引写入 `追踪/CHAPTERS.md`。`output/` 仅保留为报告输出和旧版章节兼容目录。
+
 ### 开始对话
 
 ```text
@@ -341,8 +351,7 @@ ximen-aimazi/
 ├── LICENSE
 ├── _meta.json                  # 版本与发布信息
 ├── MEMORY.md                   # 记忆索引
-├── SESSION.md                  # 跨会话恢复文件
-├── .trae/skills/ximen-aimazi/  # Trae 平台 skill 镜像
+├── SESSION.md                  # skill 仓库示例会话文件
 ├── assets/
 │   ├── STYLE-TEMPLATE.md       # 5 种预设文风库
 │   ├── EDGE-TEMPLATE.md        # 5 种擦边风格模板
@@ -365,9 +374,23 @@ ximen-aimazi/
 │   ├── platform-guide.md       # 平台适配指南
 │   ├── anti-ai-*.md            # 去 AI 味模块（2 个）
 │   └── ...                     # 更多参考资料
-├── memory/                     # 分类记忆
-├── .learnings/                 # 小说事实档案（角色/伏笔/地点等）
+├── memory/                     # skill 仓库默认/示例记忆
+├── .learnings/                 # skill 仓库默认/示例事实档案
 └── scripts/                    # 初始化与字数统计脚本
+```
+
+`init-novel` 创建的小说工作区结构：
+
+```text
+我的小说名/
+├── SESSION.md
+├── 设定/                      # 提示词、世界观、角色、创作参数等
+├── 大纲/                      # 大纲、细纲、批次细纲、冻结清单
+├── 正文/                      # 第001章_章名.md ...
+├── 追踪/                      # CHAPTERS.md、伏笔.md、时间线.md
+├── .learnings/                # 真相档案
+├── memory/                    # 项目级记忆
+└── output/                    # 字数统计等报告；兼容旧章节输出
 ```
 
 ## 使用建议

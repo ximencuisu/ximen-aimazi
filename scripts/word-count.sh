@@ -1,8 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # 字数统计脚本
-# 用法: ./word-count.sh
 
 set -euo pipefail
+
+usage() {
+    cat << EOF
+用法: $(basename "$0") [--workspace <path>]
+
+统计章节中文字数。
+默认统计 ./正文/第*.md，并兼容旧目录 ./output/第*.md。
+报告写入 <workspace>/output/字数统计.md。
+EOF
+}
 
 count_han_chars() {
     perl -CSDA -0ne 'my $count = () = $_ =~ /\p{Han}/g; print $count;' "$1"
@@ -13,14 +22,48 @@ if ! command -v perl >/dev/null 2>&1; then
     exit 1
 fi
 
-if [ ! -d "output" ]; then
-    echo "[错误] 未找到 output/ 目录"
-    echo "请在小说项目根目录运行此脚本"
+WORKSPACE="."
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --workspace)
+            shift
+            if [[ $# -eq 0 ]]; then
+                echo "[错误] --workspace 需要一个路径" >&2
+                usage
+                exit 1
+            fi
+            WORKSPACE="$1"
+            shift
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        -*)
+            echo "[错误] 未知选项: $1" >&2
+            usage
+            exit 1
+            ;;
+        *)
+            WORKSPACE="$1"
+            shift
+            ;;
+    esac
+done
+
+if [ ! -d "$WORKSPACE" ]; then
+    echo "[错误] 工作区不存在: $WORKSPACE" >&2
     exit 1
 fi
 
-report_file="output/字数统计.md"
+draft_dir="$WORKSPACE/正文"
+legacy_dir="$WORKSPACE/output"
+report_dir="$WORKSPACE/output"
+report_file="$report_dir/字数统计.md"
 detail_file="$(mktemp)"
+
+mkdir -p "$report_dir"
 
 total_chars=0
 chapter_count=0
@@ -29,19 +72,35 @@ echo "========================================"
 echo "  小说字数统计"
 echo "========================================"
 echo ""
+echo "工作区: $WORKSPACE"
+echo "主目录: $draft_dir"
+echo "兼容目录: $legacy_dir"
+echo ""
 
-for file in output/第*.md; do
-    [ -f "$file" ] || continue
+collect_dir() {
+    local label="$1"
+    local dir="$2"
 
-    filename="$(basename "$file")"
-    chars="$(count_han_chars "$file")"
+    [ -d "$dir" ] || return 0
 
-    chapter_count=$((chapter_count + 1))
-    total_chars=$((total_chars + chars))
+    for file in "$dir"/第*.md; do
+        [ -f "$file" ] || continue
 
-    printf '| `%s` | %s |\n' "$filename" "$chars" >> "$detail_file"
-    echo "$filename: ${chars} 字"
-done
+        local filename
+        local chars
+        filename="$(basename "$file")"
+        chars="$(count_han_chars "$file")"
+
+        chapter_count=$((chapter_count + 1))
+        total_chars=$((total_chars + chars))
+
+        printf '| %s | `%s` | %s |\n' "$label" "$filename" "$chars" >> "$detail_file"
+        echo "[$label] $filename: ${chars} 字"
+    done
+}
+
+collect_dir "正文" "$draft_dir"
+collect_dir "output-legacy" "$legacy_dir"
 
 avg_chars=0
 if [ "$chapter_count" -gt 0 ]; then
@@ -60,7 +119,7 @@ fi
 {
     echo "# 字数统计"
     echo ""
-    echo "> 统计范围：\`output/\` 目录下所有 \`第*.md\` 章节文件。"
+    echo "> 统计范围：\`正文/第*.md\`；兼容旧目录 \`output/第*.md\`。"
     echo ""
     echo "## 汇总"
     echo ""
@@ -72,11 +131,11 @@ fi
     echo ""
     echo "## 章节详情"
     echo ""
-    echo "| 章节文件 | 字数 |"
-    echo "|----------|------|"
+    echo "| 来源 | 章节文件 | 字数 |"
+    echo "|------|----------|------|"
 
     if [ "$chapter_count" -eq 0 ]; then
-        echo "| _暂无章节_ | 0 |"
+        echo "| _暂无章节_ | — | 0 |"
     else
         cat "$detail_file"
     fi

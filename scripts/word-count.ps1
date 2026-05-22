@@ -1,23 +1,89 @@
 $ErrorActionPreference = "Stop"
 
+function Show-Usage {
+    Write-Host "Usage: word-count.bat [--workspace <path>]" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "Count Chinese characters in chapter markdown files."
+    Write-Host "Default scope: draft chapters; legacy fallback: output chapters"
+}
+
+function Resolve-WorkspacePath([string]$PathValue) {
+    if ([System.IO.Path]::IsPathRooted($PathValue)) {
+        return [System.IO.Path]::GetFullPath($PathValue)
+    }
+
+    return [System.IO.Path]::GetFullPath((Join-Path (Get-Location) $PathValue))
+}
+
 function Join-Chars([int[]]$Codes) {
     return (-join ($Codes | ForEach-Object { [char]$_ }))
 }
 
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$SkillDir = Split-Path -Parent $ScriptDir
-$OutputDir = Join-Path $SkillDir "output"
-$ChapterPattern = (Join-Chars @(31532)) + "*.md"
-$ReportFile = Join-Path $OutputDir (Join-Chars @(23383, 25968, 32479, 35745, 46, 109, 100))
+$WorkspaceArg = "."
+$ShowHelp = $false
 
-if (-not (Test-Path -LiteralPath $OutputDir)) {
-    Write-Host "[error] output/ was not found. Run the script from the project root." -ForegroundColor Red
+for ($Index = 0; $Index -lt $args.Count; $Index++) {
+    $Argument = $args[$Index]
+    switch ($Argument) {
+        "-h" { $ShowHelp = $true; continue }
+        "--help" { $ShowHelp = $true; continue }
+        "--workspace" {
+            $Index++
+            if ($Index -ge $args.Count) {
+                Write-Host "[error] --workspace requires a path." -ForegroundColor Red
+                Show-Usage
+                exit 1
+            }
+            $WorkspaceArg = $args[$Index]
+            continue
+        }
+        default {
+            if ($WorkspaceArg -eq ".") {
+                $WorkspaceArg = $Argument
+            } else {
+                Write-Host "[error] Unexpected argument: $Argument" -ForegroundColor Red
+                Show-Usage
+                exit 1
+            }
+        }
+    }
+}
+
+if ($ShowHelp) {
+    Show-Usage
+    exit 0
+}
+
+$WorkspaceDir = Resolve-WorkspacePath $WorkspaceArg
+$DraftDirName = Join-Chars @(27491, 25991)
+$ChapterPrefix = Join-Chars @(31532)
+$ReportFileName = Join-Chars @(23383, 25968, 32479, 35745, 46, 109, 100)
+$DraftDir = Join-Path $WorkspaceDir $DraftDirName
+$LegacyOutputDir = Join-Path $WorkspaceDir "output"
+$ReportDir = $LegacyOutputDir
+$ChapterPattern = $ChapterPrefix + "*.md"
+$ReportFile = Join-Path $ReportDir $ReportFileName
+
+if (-not (Test-Path -LiteralPath $WorkspaceDir)) {
+    Write-Host "[error] workspace was not found: $WorkspaceDir" -ForegroundColor Red
     exit 1
 }
 
-$ChapterFiles = Get-ChildItem -LiteralPath $OutputDir -Filter $ChapterPattern -File -ErrorAction SilentlyContinue |
-    Sort-Object Name
+if (-not (Test-Path -LiteralPath $ReportDir)) {
+    New-Item -ItemType Directory -Path $ReportDir -Force | Out-Null
+}
 
+$ChapterFiles = @()
+if (Test-Path -LiteralPath $DraftDir) {
+    $ChapterFiles += Get-ChildItem -LiteralPath $DraftDir -Filter $ChapterPattern -File -ErrorAction SilentlyContinue |
+        ForEach-Object { [PSCustomObject]@{ File = $_; Source = "draft" } }
+}
+if (Test-Path -LiteralPath $LegacyOutputDir) {
+    $ChapterFiles += Get-ChildItem -LiteralPath $LegacyOutputDir -Filter $ChapterPattern -File -ErrorAction SilentlyContinue |
+        ForEach-Object { [PSCustomObject]@{ File = $_; Source = "output-legacy" } }
+}
+
+$ChapterFiles = $ChapterFiles | Sort-Object Source, { $_.File.Name }
 $Rows = @()
 $TotalChars = 0
 
@@ -25,16 +91,22 @@ Write-Host "========================================"
 Write-Host "  Novel Character Count"
 Write-Host "========================================"
 Write-Host ""
+Write-Host ("workspace: {0}" -f $WorkspaceDir)
+Write-Host ("primary:   {0}" -f $DraftDir)
+Write-Host ("legacy:    {0}" -f $LegacyOutputDir)
+Write-Host ""
 
-foreach ($File in $ChapterFiles) {
+foreach ($Entry in $ChapterFiles) {
+    $File = $Entry.File
     $Content = Get-Content -LiteralPath $File.FullName -Raw -Encoding UTF8
     $Count = [regex]::Matches($Content, "[\u3400-\u9FFF]").Count
     $TotalChars += $Count
     $Rows += [PSCustomObject]@{
+        Source = $Entry.Source
         FileName = $File.Name
         Characters = $Count
     }
-    Write-Host ("{0}: {1} chars" -f $File.Name, $Count)
+    Write-Host ("[{0}] {1}: {2} chars" -f $Entry.Source, $File.Name, $Count)
 }
 
 $ChapterCount = $Rows.Count
@@ -46,27 +118,27 @@ $Percent100 = if ($TotalChars -gt 0) { [math]::Floor($TotalChars * 100 / 1000000
 $Lines = @(
     "# Character Count Report",
     "",
-    "> Scope: all chapter markdown files under `output/` that use the standard chapter filename prefix.",
+    "> Scope: primary draft directory chapter files; legacy-compatible with `output/` chapter files.",
     "",
     "## Summary",
     "",
     "| Metric | Value |",
-    "|--------|-------|",
+    "|------|-----|",
     "| Chapters | $ChapterCount |",
     "| Total chars | $TotalChars |",
     "| Average per chapter | $AverageChars |",
     "",
     "## Chapters",
     "",
-    "| File | Chars |",
-    "|------|-------|"
+    "| Source | File | Chars |",
+    "|------|------|------|"
 )
 
 if ($Rows.Count -eq 0) {
-    $Lines += "| _No chapters yet_ | 0 |"
+    $Lines += "| _No chapters yet_ | - | 0 |"
 } else {
     foreach ($Row in $Rows) {
-        $Lines += "| ``$($Row.FileName)`` | $($Row.Characters) |"
+        $Lines += "| $($Row.Source) | ``$($Row.FileName)`` | $($Row.Characters) |"
     }
 }
 
@@ -75,7 +147,7 @@ $Lines += @(
     "## Progress",
     "",
     "| Target | Completion |",
-    "|--------|------------|",
+    "|------|--------|",
     "| 300k chars | $Percent30% |",
     "| 500k chars | $Percent50% |",
     "| 1,000k chars | $Percent100% |"

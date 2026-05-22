@@ -5,7 +5,7 @@ license: MIT
 compatibility: "Works with Claude Code, Cursor, OpenAI Codex, GitHub Copilot, and other Agent Skills compatible tools. Requires file read/write permissions."
 metadata:
   author: ximencuisu
-  version: "2.3.0"
+  version: "2.3.3"
   language: en
   category: creative-writing
   tags: "novel, fiction, creative-writing, story-generation, web-novel"
@@ -48,6 +48,19 @@ Phase 12 Polish & Score
 ```
 
 For the full Chinese operational details, see `SKILL.md`.
+
+### v2.3 Interaction Decision Points
+
+The workflow has two interaction modes:
+
+| Mode | Behavior |
+|------|----------|
+| Discussion mode (default) | Stop at every decision point and show options. |
+| Fast mode | Auto-use the recommended path for non-critical points, but still stop at hard gates. |
+
+Main workflow decision points use `DP` identifiers (`DP1-1` through `DP12-3`). Fast mode must always stop at `DP1-2` concept selection, `DP4-1` parameter configuration, `DP9-1` audit plan selection, and first-chapter `DP10-2` draft review.
+
+Continuation workflow decision points use `CP-①` through `CP-⑫`. Fast mode must always stop at `CP-④` route selection, `CP-⑥` frozen canon confirmation, `CP-⑩` sample chapter review, and first-chapter `CP-⑪` key plot-point confirmation.
 
 ### Enhanced Modes (optional overlays)
 
@@ -216,7 +229,7 @@ Catchphrase / signature action:
 
 **Goal**: Confirm key parameters before outline generation
 
-**Use AskUserQuestion tool to ask all parameters at once:**
+**Use the current Agent platform's structured question capability to ask all parameters at once; if no dedicated tool exists, present a clear numbered option list:**
 
 #### Parameter 1: Chapter Count
 
