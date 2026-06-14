@@ -40,6 +40,7 @@
 3. **编辑部流水线** → 用户想像工作室一样推进时，读取 `references/editorial-pipeline.md`
 4. **深度审稿** → 关键章节或精修场景，读取 `references/advanced-audit.md`
 5. **去AI味专项** → "太AI了""去味""deslop"时，执行内嵌去AI味检查项+三遍法，读取 `references/anti-ai-writing.md`
+6. **正文改稿（章节改进流水线）** → 对已写正文做系统性改进（插入场景/修复矛盾/补铺垫/拆分合并）时，五步流水线：审核定位→设计方案→重写正文→同步7类下游文件→SubAgent终审验证。读取 `references/downstream-sync-checklist.md` + `references/verification-checklist.md`
 
 ## 记忆文件（真相档案）
 
@@ -93,6 +94,8 @@
 - 节奏控制指南：`references/pacing-guide.md`（爽点密度+情绪曲线+时间节奏）
 - 反派原型指南：`references/villain-archetypes.md`（7种反派类型+设计模式）
 - 长篇可持续性：`references/long-form-sustainability.md`（200+章节奏管理+世界观扩展）
+- 改稿下游同步：`references/downstream-sync-checklist.md`（7类文件更新规则+格式模板）
+- 改稿终审验证：`references/verification-checklist.md`（10项检查标准+Grep策略）
 
 ## 输出规范
 
