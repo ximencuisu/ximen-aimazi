@@ -14,7 +14,11 @@
 > **情绪曲线**：[低开高走 / 层层递进 / 反转爆发 / 紧张释放]
 > **涉及角色**：[本章出场的角色列表]
 > **涉及地点**：[本章场景所在地]
-> **写作前调用清单**：memory/project_style.md / CHAPTER-TEMPLATE.md / writing-basics.md / writing-craft.md / 对应 style-*.md / hook-techniques.md / anti-ai-writing.md
+> **写作前读取确认（硬门控）**：未填写本块 → 阻断正文生成。每项需提取 1-2 条关键规则/事实。
+>   - 项目约束层：memory/project_style.md → {提取内容}；memory/style_contrast_guide.md（若文风F） → {提取内容}
+>   - 真相档案层：.learnings/STORY_BIBLE.md → {提取内容}；.learnings/CHARACTERS.md → {提取内容}；.learnings/PLOT_SUSPENSE.md → {提取内容}（按需加 LOCATIONS/RESOURCES/SUBPLOTS/EMOTIONS）
+>   - 上下文层：正文/第{N-1}章_*.md → {提取承接点}；大纲/批次细纲/ → {提取本章细纲}；追踪/伏笔.md → {提取待回收伏笔}；设定/角色/{相关角色}.md → {提取角色卡}；设定/不可改动清单.md（续写） → {提取 Frozen_Canon}
+>   - 参考库层：assets/CHAPTER-TEMPLATE.md → {提取模板结构}；题材 style-*.md → {提取文风要点}；hook-techniques.md → {提取钩子类型}；anti-ai-writing.md → {提取去AI味硬约束}；assets/EDGE-TEMPLATE.md（若擦边） → {提取擦边风格}
 > **大神技法**：[主参考技法 + 辅参考技法]
 > **钩子类型**：[章首钩子 / 章末钩子类型]
 > **节奏目标**：[本章节奏安排]
@@ -42,6 +46,13 @@
 ## 章节生成检查清单
 
 每章生成后自检：
+
+### 读取确认硬门控
+- [ ] 「写作前读取确认」块已填写，每个文件提取了 1-2 条关键规则/事实
+- [ ] 项目约束层（memory/project_style.md + 对比文风）已实际读取并引用
+- [ ] 真相档案层（.learnings/）已实际读取并引用
+- [ ] 上下文层（上章正文 + 批次细纲 + 伏笔表）已实际读取并引用
+- [ ] 参考库层（CHAPTER-TEMPLATE + style-* + hook + anti-ai）已实际读取并引用
 
 ### 连贯性检查
 - [ ] 与上一章结尾衔接自然
