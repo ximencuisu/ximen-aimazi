@@ -9,7 +9,7 @@
 ```markdown
 ## 大纲摘要
 
-**参考调用**：`outline-arrangement.md`（八节点骨架）、`advanced-plot-techniques.md`（杠杆拉扯法）、`hook-techniques.md`（突然揭示型钩子）
+**参考调用**：`outline-structure.md`（八节点骨架）、`advanced-plot-techniques.md`（杠杆拉扯法）、`hook-ending.md`（突然揭示型钩子）
 
 **核心爽点循环**：打脸三段式 × 升级突破 × 揭秘反转，三类轮换，间隔不超 5000 字
 **期待感链路**：金手指首秀(第3章) → 宗门试炼(第10章) → 秘境探险(第25章) → 宗主对决(第50章)

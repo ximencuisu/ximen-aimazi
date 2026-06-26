@@ -389,10 +389,10 @@
 - .learnings/PLOT_SUSPENSE.md：{提取待回收伏笔}
 
 【参考库层】
-- outline-arrangement.md：{提取 1-2 条本步将应用的技法}
+- outline-structure.md / outline-eight-lines.md / outline-conflict-design.md：{提取 1-2 条本步将应用的技法}
 - plot-structures.md：{提取 1-2 条本步将应用的结构}
 - advanced-plot-techniques.md：{提取 1-2 条本步将应用的技法}
-- hook-techniques.md：{提取 1-2 条本步将应用的钩子策略}
+- hook-ending.md / hook-opening.md：{提取 1-2 条本步将应用的钩子策略}
 
 ❓ 读取确认完成，可进入大纲方向生成？
 ```
@@ -422,7 +422,7 @@
 📋 大纲方向选择：
 
 【参考调用策略】
-- 必读：memory/project_style.md / outline-arrangement.md / plot-structures.md / advanced-plot-techniques.md / hook-techniques.md
+- 必读：memory/project_style.md / outline-structure.md / outline-eight-lines.md / outline-conflict-design.md / plot-structures.md / advanced-plot-techniques.md / hook-ending.md / hook-opening.md
 - 文风圣经：{基础文风 + 主/辅参考}
 - 本步将应用：{爽点循环/期待感链路/高潮递进/章末钩子策略}
 
@@ -527,7 +527,7 @@
 
 【参考库层】
 - chapter-outline.md：{提取批次规划规则}
-- hook-techniques.md：{提取钩子策略}
+- hook-ending.md / hook-opening.md：{提取钩子策略}
 - advanced-plot-techniques.md：{提取技法}
 
 ❓ 读取确认完成，可进入批次规划？
@@ -606,7 +606,7 @@
 
 【参考库层】
 - chapter-outline.md：{提取细纲生成规则}
-- hook-techniques.md：{提取本批钩子策略}
+- hook-ending.md / hook-opening.md：{提取本批钩子策略}
 - advanced-plot-techniques.md：{提取本批技法}
 
 ❓ 读取确认完成，可进入细纲生成？
@@ -640,7 +640,7 @@
 硬锚点：{锚点}
 风险等级：{风险}
 上下文来源：{读取文件列表}
-参考调用清单：memory/project_style.md / chapter-outline.md / hook-techniques.md / advanced-plot-techniques.md
+参考调用清单：memory/project_style.md / chapter-outline.md / hook-ending.md / hook-opening.md / advanced-plot-techniques.md
 本批技法目标：{爽点类型} / {钩子策略} / {大神节奏约束}
 
 ❓ 可以开始生成吗？有没有额外要求？
@@ -785,7 +785,7 @@
 【参考库层】
 - assets/CHAPTER-TEMPLATE.md：{提取模板结构}
 - 题材对应 style-*.md：{提取文风要点}
-- hook-techniques.md：{提取本章钩子类型}
+- hook-ending.md / hook-opening.md：{提取本章钩子类型}
 - anti-ai-writing.md：{提取去AI味硬约束}
 - assets/EDGE-TEMPLATE.md（若擦边非"无"）：{提取擦边风格}
 
@@ -896,7 +896,7 @@ AI检测到的润色重点：
 【润色参考调用】
 - 文风圣经：{基础文风/大神参考}
 - 质量检查：quality-check.md / quality-checklist.md
-- 去AI味：anti-ai-detection.md / anti-ai-writing.md
+- 去AI味：anti-ai-writing.md
 - 本步技法回拉：{文风/节奏/对话/钩子}
 
 去AI味检查预扫描：

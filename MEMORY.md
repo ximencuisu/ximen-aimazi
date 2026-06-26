@@ -19,7 +19,7 @@
 | `STORY_BIBLE.md` | 世界观规则（力量体系/社会结构/核心规则） | 新设定补充时 |
 | `RESOURCES.md` | 资源账本（物品/金钱/能量） | 资源获得/消耗时 |
 | `SUBPLOTS.md` | 子剧情板（活跃/休眠/已回收） | 子剧情状态变化时 |
-| `EMOTIONS.md` | 情感弧线（角色情感发展） | 情感关系变化时 |
+| `EMOTIONS.md` | 情感弧线（活跃/冷处理/已完结分层） | 情感关系变化时 |
 | `ERRORS.md` | 错误记录（穿帮/矛盾/质量差） | 发现问题时 |
 
 ### memory/ 项目元数据
@@ -52,8 +52,8 @@
 | 角色 30+ 章未出场 | 移入休眠区，只保留头部摘要 |
 | 伏笔已回收 | `PLOT_SUSPENSE.md` 中标记为"已回收"，30章后移入归档 |
 | 子剧情 30+ 章未推进 | `SUBPLOTS.md` 中标记为"休眠" |
-| 情感线完结 | `EMOTIONS.md` 中标记为"已完结" |
-| 地点 50+ 章未提及 | `LOCATIONS.md` 中标记为"归档" |
+| 情感线完结 | `EMOTIONS.md` 中标记为"已完结"，30章后移入归档 |
+| 地点 30+ 章未提及 | `LOCATIONS.md` 中标记为"归档" |
 
 ---
 
@@ -73,3 +73,17 @@
 ## 参考 (Reference)
 - [工具脚本](memory/reference_tools.md) — 初始化脚本、字数统计等工具位置
 - [模板索引](memory/reference_templates.md) — 各模板文件用途和调用时机
+
+### v2.6 新增 references 文件
+
+以下文件在 v2.6.0 新增，已同步至 SKILL.md 参考资料表和 AGENTS.md 配置参考清单：
+
+| 文件 | 用途 | 何时加载 |
+|------|------|---------|
+| `references/faction-design.md` | 势力设计（层级/利益/关系/节奏/互动） | Phase 2/3 涉及多势力冲突时 |
+| `references/timeline-and-naming.md` | 时间线格式/时间跳跃/章节命名/卷首尾/字数控制 | Phase 7/8 细纲规划、卷结束检查点 |
+| `references/outline-structure.md` | 大纲结构设计 | Phase 6 大纲生成 |
+| `references/outline-eight-lines.md` | 八线大纲法 | Phase 6 大纲生成 |
+| `references/outline-conflict-design.md` | 大纲冲突设计 | Phase 6 大纲生成 |
+| `references/hook-ending.md` | 章末钩子设计 | Phase 8/10 细纲与正文 |
+| `references/hook-opening.md` | 章首钩子设计 | Phase 8/10 细纲与正文 |

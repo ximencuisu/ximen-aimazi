@@ -44,10 +44,11 @@ function Test-Frontmatter {
         $keys += $Matches[1]
     }
 
-    $allowed = @('name', 'description')
-    foreach ($required in $allowed) {
-        if ($keys -notcontains $required) {
-            Add-Error "SKILL.md frontmatter missing required key: $required"
+    $required = @('name', 'description')
+    $allowed = @('name', 'description', 'install_method')
+    foreach ($req in $required) {
+        if ($keys -notcontains $req) {
+            Add-Error "SKILL.md frontmatter missing required key: $req"
         }
     }
     foreach ($key in $keys) {
@@ -58,7 +59,7 @@ function Test-Frontmatter {
 }
 
 function Test-VersionPins {
-    $expected = '2.5.0'
+    $expected = '2.6.0'
 
     $metaPath = Join-Path $rootPath '_meta.json'
     $pluginPath = Join-Path $rootPath 'plugin.json'
@@ -142,7 +143,13 @@ function Resolve-MarkdownReference([string]$Reference) {
     $candidates = New-Object System.Collections.Generic.List[string]
     $candidates.Add((Join-Path $rootPath $normalized)) | Out-Null
 
-    if ($Reference -notmatch '^(references|assets|memory|scripts|output|\.learnings|正文|大纲|设定|追踪)/') {
+    # Build known-dir regex with codepoints so source stays ASCII-only (see Test-WorkspaceConsistency note).
+    $zhengWen = "$([char]0x6B63)$([char]0x6587)"     # main-text dir (zheng-wen)
+    $daGang = "$([char]0x5927)$([char]0x7EB2)"       # outline dir (da-gang)
+    $sheDing = "$([char]0x8BBE)$([char]0x5B9A)"      # settings dir (she-ding)
+    $zhuiZong = "$([char]0x8FFD)$([char]0x8E2A)"     # tracking dir (zhui-zong)
+    $knownDirPattern = '^(references|assets|memory|scripts|output|\.learnings|' + $zhengWen + '|' + $daGang + '|' + $sheDing + '|' + $zhuiZong + ')/'
+    if ($Reference -notmatch $knownDirPattern) {
         $candidates.Add((Join-Path (Join-Path $rootPath 'references') $normalized)) | Out-Null
         $candidates.Add((Join-Path (Join-Path $rootPath 'assets') $normalized)) | Out-Null
         $candidates.Add((Join-Path (Join-Path $rootPath 'memory') $normalized)) | Out-Null
@@ -170,6 +177,15 @@ function Test-MarkdownReferences {
         }
     }
 
+    # Build Chinese runtime-output dir/file patterns from codepoints (ASCII-only source).
+    $zhengWen = "$([char]0x6B63)$([char]0x6587)"                     # 正文
+    $daGang = "$([char]0x5927)$([char]0x7EB2)"                       # 大纲
+    $sheDing = "$([char]0x8BBE)$([char]0x5B9A)"                      # 设定
+    $zhuiZong = "$([char]0x8FFD)$([char]0x8E2A)"                     # 追踪
+    $shiJianXian = "$([char]0x65F6)$([char]0x95F4)$([char]0x7EBF)"  # 时间线
+    $xiGang = "$([char]0x7EC6)$([char]0x7EB2)"                       # 细纲
+    $chaiWenBaoGao = "$([char]0x62C6)$([char]0x6587)$([char]0x62A5)$([char]0x544A)"  # 拆文报告
+
     $ignoredPatterns = @(
         '^\{',
         '^[A-Za-z0-9_-]+:\s+',
@@ -180,7 +196,10 @@ function Test-MarkdownReferences {
         '\{.*\}',
         '^output/',
         '^\.learnings/',
-        '[^\x00-\x7F]',
+        ("^$zhengWen/"),
+        ("^$daGang/"),
+        ("^$sheDing/"),
+        ("^$zhuiZong/"),
         '^CHARACTERS\.md$',
         '^EMOTIONS\.md$',
         '^ERRORS\.md$',
@@ -188,7 +207,10 @@ function Test-MarkdownReferences {
         '^PLOT_SUSPENSE\.md$',
         '^RESOURCES\.md$',
         '^STORY_BIBLE\.md$',
-        '^SUBPLOTS\.md$'
+        '^SUBPLOTS\.md$',
+        ("^$shiJianXian\.md$"),
+        ("^$xiGang\.md$"),
+        ("^$chaiWenBaoGao\.md$")
     )
 
     $missing = New-Object System.Collections.Generic.HashSet[string]
@@ -223,11 +245,54 @@ function Test-MarkdownReferences {
     }
 }
 
+function Compare-FileSet([string]$LeftDir, [string]$RightDir, [string]$LeftLabel, [string]$RightLabel) {
+    if (-not (Test-Path -LiteralPath $LeftDir)) { return }
+    if (-not (Test-Path -LiteralPath $RightDir)) {
+        Add-Error "$RightLabel is missing while $LeftLabel exists."
+        return
+    }
+    $leftNames = @(Get-ChildItem -LiteralPath $LeftDir -File | ForEach-Object { $_.Name })
+    $rightNames = @(Get-ChildItem -LiteralPath $RightDir -File | ForEach-Object { $_.Name })
+    foreach ($name in ($leftNames | Where-Object { $rightNames -notcontains $_ })) {
+        Add-Error "$LeftLabel/$name has no counterpart in $RightLabel."
+    }
+    foreach ($name in ($rightNames | Where-Object { $leftNames -notcontains $_ })) {
+        Add-Error "$RightLabel/$name has no counterpart in $LeftLabel."
+    }
+}
+
+function Test-WorkspaceConsistency {
+    Compare-FileSet (Join-Path $rootPath 'memory') `
+                     (Join-Path $rootPath 'assets\workspace\memory') `
+                     'memory' 'assets/workspace/memory'
+    Compare-FileSet (Join-Path $rootPath '.learnings') `
+                     (Join-Path $rootPath 'assets\workspace\.learnings') `
+                     '.learnings' 'assets/workspace/.learnings'
+
+    # Build Chinese path/marker from codepoints so this script source stays ASCII-only.
+    # (Windows PowerShell 5.1 reads no-BOM .ps1 as system ANSI codepage, which would
+    # mojibake literal Chinese and break parsing. See Task E3 note.)
+    $daGang = "$([char]0x5927)$([char]0x7EB2)"           # outline dir (da-gang)
+    $xiGang = "$([char]0x7EC6)$([char]0x7EB2)"           # outline detail file (xi-gang)
+    $marker = "$([char]0x51BB)$([char]0x7ED3)$([char]0x68C0)$([char]0x67E5)"  # freeze-check marker
+
+    $outlinePath = Join-Path $rootPath "assets\workspace\$daGang\$xiGang.md"
+    if (-not (Test-Path -LiteralPath $outlinePath)) {
+        Add-Error "assets/workspace/$daGang/$xiGang.md is missing."
+        return
+    }
+    $outlineText = Get-Text $outlinePath
+    if (-not $outlineText.Contains($marker)) {
+        Add-Error "assets/workspace/$daGang/$xiGang.md missing '$marker' marker (Phase 9 freeze checklist)."
+    }
+}
+
 Test-Frontmatter
 Test-VersionPins
 Test-NoSecondarySkillDoc
 Test-AgentMetadata
 Test-MarkdownReferences
+Test-WorkspaceConsistency
 
 if ($errors.Count -gt 0) {
     Write-Host "Skill validation failed:" -ForegroundColor Red

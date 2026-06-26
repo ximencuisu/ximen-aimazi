@@ -13,7 +13,11 @@
 > **情感走向**：甜蜜升温 / 虐心 / 误会 / 和好 / 突破
 > **CP进度**：[初遇/相识/暧昧/表白/确认/升温/危机/和好]
 > **情绪曲线**：[甜到齁 / 虐到哭 / 笑中带泪 / 欲罢不能]
-> **写作前调用清单**：memory/project_style.md / CHAPTER-TEMPLATE.female.md / female-genre-guide.md / hook-techniques.md / anti-ai-writing.md
+> **写作前读取确认（硬门控）**：未填写本块 → 阻断正文生成。每项需提取 1-2 条关键规则/事实。
+>   - 项目约束层：memory/project_style.md → {提取内容}；memory/style_contrast_guide.md（若文风F） → {提取内容}
+>   - 真相档案层：.learnings/STORY_BIBLE.md → {提取内容}；.learnings/CHARACTERS.md → {提取内容}；.learnings/PLOT_SUSPENSE.md → {提取内容}（按需加 LOCATIONS/RESOURCES/SUBPLOTS/EMOTIONS）
+>   - 上下文层：正文/第{N-1}章_*.md → {提取承接点}；大纲/批次细纲/ → {提取本章细纲}；追踪/伏笔.md → {提取待回收伏笔}；设定/角色/{相关角色}.md → {提取角色卡}；设定/不可改动清单.md（续写） → {提取 Frozen_Canon}
+>   - 参考库层：assets/CHAPTER-TEMPLATE.female.md → {提取模板结构}；references/female-genre-guide.md → {提取女频要点}；references/hook-ending.md / references/hook-opening.md → {提取钩子类型}；references/anti-ai-writing.md → {提取去AI味硬约束}；assets/EDGE-TEMPLATE.md（若擦边） → {提取擦边风格}
 > **大神技法**：[主参考技法 + 辅参考技法]
 > **钩子类型**：[暧昧钩子 / 误会钩子 / 情绪钩子]
 > **节奏目标**：[情感推进和剧情推进比例]
@@ -39,6 +43,13 @@
 ---
 
 ## 女频章节质量检查
+
+### 读取确认硬门控
+- [ ] 「写作前读取确认」块已填写，每个文件提取了 1-2 条关键规则/事实
+- [ ] 项目约束层（memory/project_style.md + 对比文风）已实际读取并引用
+- [ ] 真相档案层（.learnings/）已实际读取并引用
+- [ ] 上下文层（上章正文 + 批次细纲 + 伏笔表）已实际读取并引用
+- [ ] 参考库层（CHAPTER-TEMPLATE.female + female-genre-guide + hook + anti-ai）已实际读取并引用
 
 ### 连贯性检查
 - [ ] 与上一章情感走向衔接自然

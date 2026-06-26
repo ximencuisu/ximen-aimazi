@@ -1,5 +1,82 @@
 # 更新日志
 
+## v2.6.0 (2026-06-26)
+
+### 系统性审查完善
+
+**核心改动**：基于 spec 驱动的系统性完整性审查，覆盖 6 大主题（模板一致性、引用清理、覆盖盲区、测试覆盖、脚本工具、文档一致性），完善 33 项验证点，消除模板漂移、断链残留、覆盖盲区和文档不一致问题。
+
+**主题 A：模板与初始化一致性**
+- 女频章节模板补齐四层读取确认块（项目约束/真相档案/上下文/参考库）+ 硬门控标注
+- workspace/memory 补齐至 10 个文件，与根级 memory/ 一致
+- LEARNINGS-TEMPLATE.md 补齐 8 个模板段落
+- CHAPTERS.md 补分页机制 + 历史摘要区
+- 细纲模板补 Phase 9 冻结检查表（5 项条件）
+- workspace/设定/ 补 5 个续写专用文件骨架
+- ERRORS.md 补 `<!-- 插入格式 -->` 注释块
+- STYLE-TEMPLATE.md 补"作家技法参考使用规则"小节
+
+**主题 B：references 引用清理与拆分**
+- 拆分 outline-arrangement.md → outline-structure.md + outline-eight-lines.md + outline-conflict-design.md
+- 拆分 hook-techniques.md → hook-ending.md + hook-opening.md
+- 清理 anti-ai-writing.md 对 banned-words.md / anti-ai-detection.md 的循环引用
+- continuation-engine.md / continuation-interaction.md 去重，统一指向 continuation-overview.md
+- 10 个 references 文件补 `> 何时加载：` 头部声明
+- style-fantasy.md / style-suspense.md 补速查卡声明
+
+**主题 C：覆盖盲区补齐**
+- 新增 faction-design.md（势力层级/利益矩阵/关系网/节奏/主角互动 5 章）
+- 新增 timeline-and-naming.md（时间线格式/时间跳跃/章节命名/卷首尾/字数控制 5 章）
+- writing-craft.md 补"第一人称视角管理"章节
+- genre-frameworks-unified.md 补"治愈系/ASMR"题材条目
+- market-methodology.md 补"发布后反馈整合"章节
+
+**主题 D：测试覆盖度**
+- evals.json 从 6 个用例扩展至 20 个（+14），覆盖 DP6/7/8 读取确认门控、改稿流水线、编辑部模式、作家技法、同人、卷检查点、铺垫链、去AI味频率、跳步负向
+- trigger-evals.json 正向用例从 4 个扩展至 10 个（+6），覆盖改稿/续写接力/编辑部/深度审稿/去AI味专项
+
+**主题 E：脚本工具与跨平台**
+- 新增 validate-skill.sh（bash 版，与 PowerShell 版输出一致）
+- validate-skill.ps1 移除 `[^\x00-\x7F]` 中文过滤，改用 codepoint 构建中文路径
+- 两脚本补跨目录一致性检查（memory/ vs workspace/memory/、.learnings/ vs workspace/.learnings/、细纲冻结检查表）
+- 新增 foreshadow-audit.{sh,ps1}（伏笔回收审计）
+- 新增 pave-chain-check.{sh,ps1}（铺垫链三阶校验）
+
+**主题 F：文档一致性**
+- AGENTS.md 删除 EMOTIONS.md 重复条目
+- 三处 EMOTIONS.md 描述统一为"活跃/冷处理/已完结"三层
+- LOCATIONS.md 归档阈值统一为"30+ 章未提及"
+- MEMORY.md 补"情感线完结 30 章后移入归档"规则
+- AGENTS.md "去AI味核心禁令"末尾补索引提示
+- AGENTS.md "配置参考"补完整清单索引
+- SKILL.md Phase 6/8/10/12 补 OUTPUT-EXAMPLES.md 引用
+- SKILL.md Phase 1/4/交互模式/启动说明补 memory/ 新文件引用
+
+**新增文件**：
+- references/faction-design.md, references/timeline-and-naming.md
+- references/outline-structure.md, references/outline-eight-lines.md, references/outline-conflict-design.md
+- references/hook-ending.md, references/hook-opening.md
+- scripts/validate-skill.sh, scripts/foreshadow-audit.sh, scripts/foreshadow-audit.ps1, scripts/pave-chain-check.sh, scripts/pave-chain-check.ps1
+- assets/workspace/memory/ 下 6 个新文件（project_genres, project_params, feedback_style, feedback_interaction, user_profile, reference_tools, reference_templates）
+- assets/workspace/设定/ 下 5 个续写专用文件（作品DNA, 风格指纹, 不可改动清单, 续写诊断, 续写方案）
+
+**删除文件**：
+- references/outline-arrangement.md（拆分为 3 个新文件）
+- references/hook-techniques.md（拆分为 2 个新文件）
+
+**修改文件**：
+- SKILL.md, AGENTS.md, MEMORY.md, CHANGELOG.md, _meta.json, plugin.json, README.md
+- assets/CHAPTER-TEMPLATE.female.md, assets/LEARNINGS-TEMPLATE.md, assets/STYLE-TEMPLATE.md, assets/OUTPUT-EXAMPLES.md
+- scripts/validate-skill.ps1, scripts/init-novel.ps1, scripts/init-novel.sh
+- evals/evals.json, evals/trigger-evals.json
+- .learnings/ERRORS.md, .learnings/EMOTIONS.md, .learnings/LOCATIONS.md
+- references/anti-ai-writing.md, references/writing-craft.md, references/genre-frameworks-unified.md, references/market-methodology.md
+- references/continuation-engine.md, references/continuation-interaction.md, references/continuation-overview.md
+- references/quality-check.md, references/interactive-prompts.md, references/workflow-interaction.md, references/style-fingerprint-guide.md
+- references/style-fantasy.md, references/style-suspense.md
+
+---
+
 ## v2.5.0 (2026-06-11)
 
 ### 架构瘦身与审核清单内嵌
@@ -462,3 +539,4 @@ A含蓄暗示 / B直白热烈 / C文艺唯美 / D暴力美学 / E纯情青涩
 | v2.3.4 | 分发可靠性 — 单入口 + 客户端元数据 + 校验脚本 |
 | v2.4.0 | 文风对比学习 — 6种文风(含F) + 用户样本自动提取规则 |
 | v2.5.0 | 架构瘦身 — Phase 9/11 审核内嵌 + 必读降级 + 续写拆出 + 记忆合并 + 输出范例 |
+| v2.6.0 | 系统性审查完善 — 模板一致性 + 引用清理 + 覆盖盲区 + 测试覆盖 + 脚本工具 + 文档一致性 |

@@ -18,7 +18,7 @@
 >   - 项目约束层：memory/project_style.md → {提取内容}；memory/style_contrast_guide.md（若文风F） → {提取内容}
 >   - 真相档案层：.learnings/STORY_BIBLE.md → {提取内容}；.learnings/CHARACTERS.md → {提取内容}；.learnings/PLOT_SUSPENSE.md → {提取内容}（按需加 LOCATIONS/RESOURCES/SUBPLOTS/EMOTIONS）
 >   - 上下文层：正文/第{N-1}章_*.md → {提取承接点}；大纲/批次细纲/ → {提取本章细纲}；追踪/伏笔.md → {提取待回收伏笔}；设定/角色/{相关角色}.md → {提取角色卡}；设定/不可改动清单.md（续写） → {提取 Frozen_Canon}
->   - 参考库层：assets/CHAPTER-TEMPLATE.md → {提取模板结构}；题材 style-*.md → {提取文风要点}；hook-techniques.md → {提取钩子类型}；anti-ai-writing.md → {提取去AI味硬约束}；assets/EDGE-TEMPLATE.md（若擦边） → {提取擦边风格}
+>   - 参考库层：assets/CHAPTER-TEMPLATE.md → {提取模板结构}；题材 style-*.md → {提取文风要点}；hook-ending.md / hook-opening.md → {提取钩子类型}；anti-ai-writing.md → {提取去AI味硬约束}；assets/EDGE-TEMPLATE.md（若擦边） → {提取擦边风格}
 > **大神技法**：[主参考技法 + 辅参考技法]
 > **钩子类型**：[章首钩子 / 章末钩子类型]
 > **节奏目标**：[本章节奏安排]
@@ -66,7 +66,7 @@
 - [ ] 本章爽点类型与细纲一致
 - [ ] 对话有角色个性差异
 - [ ] 章末有钩子/悬念
-- [ ] 章末钩子类型与 `hook-techniques.md` 的策略一致
+- [ ] 章末钩子类型与 `hook-ending.md` 的策略一致
 - [ ] 字数在 3000-3500 范围
 - [ ] 主角有可感知的成长或收获
 

@@ -1,5 +1,7 @@
 # 深度审稿清单
 
+> 何时加载：Phase 11/12 深度审稿
+
 这是对 `references/quality-check.md` 的增强版。
 
 `quality-check.md` 负责快速打分，这份文档负责在长篇中后段、关键高潮章、发布前精修时做深度审稿。

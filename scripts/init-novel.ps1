@@ -143,6 +143,11 @@ $ChapterPlanFileName = Join-Chars @(32454, 32434, 46, 109, 100)
 $OutlineIterationFileName = Join-Chars @(32454, 32434, 36845, 20195, 35760, 24405, 46, 109, 100)
 $OutlineInterventionFileName = Join-Chars @(32454, 32434, 24178, 39044, 20915, 31574, 46, 109, 100)
 $OutlineFreezeFileName = Join-Chars @(32454, 32434, 20923, 32467, 28165, 21333, 46, 109, 100)
+$DnaFileName = Join-Chars @(20316, 21697, 68, 78, 65, 46, 109, 100)
+$StyleFingerprintFileName = Join-Chars @(39118, 26684, 25351, 32441, 46, 109, 100)
+$FrozenCanonFileName = Join-Chars @(19981, 21487, 25913, 21160, 28165, 21333, 46, 109, 100)
+$ContinuationDiagnosisFileName = Join-Chars @(32493, 20889, 35786, 26029, 46, 109, 100)
+$ContinuationPlanFileName = Join-Chars @(32493, 20889, 26041, 26696, 46, 109, 100)
 
 $DraftDir = Join-Path $WorkspaceDir $DraftDirName
 $LearningsDir = Join-Path $WorkspaceDir ".learnings"
@@ -199,7 +204,13 @@ $TemplateFiles = @(
     ".learnings\EMOTIONS.md",
     "memory\project_params.md",
     "memory\project_style.md",
+    "memory\project_genres.md",
     "memory\style_contrast_guide.md",
+    "memory\feedback_style.md",
+    "memory\feedback_interaction.md",
+    "memory\user_profile.md",
+    "memory\reference_tools.md",
+    "memory\reference_templates.md",
     (Join-Path $TrackingDirName "CHAPTERS.md"),
     (Join-Path $TrackingDirName $PlotThreadFileName),
     (Join-Path $TrackingDirName $TimelineFileName),
@@ -207,7 +218,12 @@ $TemplateFiles = @(
     (Join-Path $OutlineDirName $ChapterPlanFileName),
     (Join-Path $OutlineDirName $OutlineIterationFileName),
     (Join-Path $OutlineDirName $OutlineInterventionFileName),
-    (Join-Path $OutlineDirName $OutlineFreezeFileName)
+    (Join-Path $OutlineDirName $OutlineFreezeFileName),
+    (Join-Path $SettingsDirName $DnaFileName),
+    (Join-Path $SettingsDirName $StyleFingerprintFileName),
+    (Join-Path $SettingsDirName $FrozenCanonFileName),
+    (Join-Path $SettingsDirName $ContinuationDiagnosisFileName),
+    (Join-Path $SettingsDirName $ContinuationPlanFileName)
 )
 
 Write-Step "Syncing project-level templates"

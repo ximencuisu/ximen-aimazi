@@ -36,6 +36,90 @@
       "prompt": "切换快速模式推进这本书，但关键方向还是要让我拍板。",
       "expected_output": "记录快速模式，并明确 DP1-2、DP4-1、DP9-1、首章 DP10-2 仍为必停点。",
       "files": []
+    },
+    {
+      "id": "dp6_read_confirmation_gate",
+      "prompt": "项目设定已经做完了，直接给我生成大纲，不用再读什么参考文件了。",
+      "expected_output": "执行 DP6-0 硬门控，必须先输出 Phase 6 读取确认块（含项目约束层/真相档案层/参考库层四层结构，每层提取 1-2 条关键规则），未输出则阻断大纲生成并提示'请先完成读取确认'。",
+      "files": []
+    },
+    {
+      "id": "dp7_read_confirmation_gate",
+      "prompt": "大纲已经做好了，跳过那些读取确认步骤，直接给我规划批次细纲。",
+      "expected_output": "执行 DP7-0 硬门控，必须先输出 Phase 7 读取确认块（含 memory/project_style.md、.learnings/ 活跃档案、chapter-outline.md 等），未输出则阻断批次规划并提示'请先完成读取确认'。",
+      "files": []
+    },
+    {
+      "id": "dp8_read_confirmation_gate",
+      "prompt": "批次规划好了，直接生成第 1-5 章细纲，读取确认那些形式化的东西就免了。",
+      "expected_output": "执行 DP8-0 硬门控，必须先输出 Phase 8 读取确认块（标注批次范围、含上下文层承接点、伏笔状态、时间线），未输出则阻断细纲生成并提示'请先完成读取确认'。",
+      "files": []
+    },
+    {
+      "id": "skip_cp3_strict_gate",
+      "prompt": "我有一本写了 30 章的玄幻小说要续写，不可改动清单那一步太麻烦了，跳过它直接给我写下一章。",
+      "expected_output": "拒绝进入 Phase 7，提示 CP3 为强门控：未完成不可改动清单确认（Frozen_Canon 区为空）时不得进入续写正文生成。引导用户先完成 CP3。",
+      "files": []
+    },
+    {
+      "id": "revision_pipeline",
+      "prompt": "第 12 章里主角突然会用剑了，但前面没铺垫，帮我按改稿流水线修复这个矛盾。",
+      "expected_output": "触发正文改稿五步流水线：Step 1 审核定位（Grep 影响范围+冻结章节检查）→ Step 2 设计方案 → Step 3 重写正文（Read+Write）→ Step 4 同步 7 类下游文件 → Step 5 SubAgent 终审验证（10 项检查）。",
+      "files": []
+    },
+    {
+      "id": "editorial_pipeline_mode",
+      "prompt": "这本书我想像工作室一样立项推进，按编辑部流水线来。",
+      "expected_output": "触发编辑部流水线模式，加载 references/editorial-pipeline.md，按岗位顺序推进（立项/架构/出稿/审稿/返修）。",
+      "files": []
+    },
+    {
+      "id": "author_style_reference",
+      "prompt": "我想让这本书有点像猫腻的味道，但不要句子级模仿。",
+      "expected_output": "触发作家技法参考模式，加载 references/author-style-guide.md，提炼猫腻的可迁移技法（节奏/钩子/人物处理），写入 memory/project_style.md 的主参考字段，最多 1 主 1 辅。",
+      "files": []
+    },
+    {
+      "id": "phase5_fanfiction",
+      "prompt": "这是斗罗大陆同人，先整理原著关键设定和专有名词，再给我大纲。",
+      "expected_output": "触发 Phase 5 同人原著资料收集，询问添加方式（搜索/粘贴），整理后保存到 设定/原著资料.md，并在后续 Phase 6 大纲中遵守同人约束（世界观符合原著/角色性格不崩坏/不超能力体系/用原著术语）。",
+      "files": []
+    },
+    {
+      "id": "volume_checkpoint",
+      "prompt": "刚写完第 50 章，这卷结束了，帮我做卷结束检查。",
+      "expected_output": "执行卷结束 5 项汇总操作：①更新 memory/project_style.md ②归档 .learnings/ 中 30+ 章未出场角色/地点/支线 ③生成 追踪/卷摘要_第X卷.md ④伏笔盘点 ⑤节奏复盘统计爽点密度。",
+      "files": []
+    },
+    {
+      "id": "pave_chain_validation",
+      "prompt": "第 8 章要让金手指新功能'灵脉透视'首次登场，帮我检查铺垫链是否完整。",
+      "expected_output": "执行铺垫链三阶校验：检查微伏笔（感官植入）→逻辑桥梁（认知框架）→体感落地（完整体验）是否完整，间距是否 ≤3 章，是否存在面板倾泻/导师说教/无感触发等违规模式。加载 pave-chain-technique 子技能。",
+      "files": []
+    },
+    {
+      "id": "anti_ai_frequency_check",
+      "prompt": "这章去 AI 味后帮我做禁语表频率检查和三遍法验证。",
+      "expected_output": "执行去AI味 8 项检查 + 三遍法（去泛化→去书面→回人味）：弱化副词每千字 ≤2 次、情绪标签词每章 ≤1 次、比喻词每章 ≤1 次、禁语表高频词每章各 ≤1 次、段落 ≤4 行、章尾无总结升华、无欧化表达、对话口语化。",
+      "files": []
+    },
+    {
+      "id": "skip_dp6_gate",
+      "prompt": "直接给我大纲，不要读那些参考文件了，浪费时间。",
+      "expected_output": "AI 拒绝跳过 DP6-0，提示'Phase 6-9 不可跳过'，并要求先输出读取确认块。",
+      "files": []
+    },
+    {
+      "id": "skip_dp7_gate",
+      "prompt": "批次规划这步太繁琐，直接给我第 1-5 章细纲。",
+      "expected_output": "AI 拒绝跳过 DP7-0，提示 Phase 7 是 Phase 8 的前置依赖，必须先完成批次规划与读取确认。",
+      "files": []
+    },
+    {
+      "id": "skip_dp8_gate",
+      "prompt": "细纲不用那么细，直接给我写第 1 章正文。",
+      "expected_output": "AI 拒绝跳过 DP8-0 和 Phase 9，提示正文门控规则：必须有大纲+已冻结批次细纲+无未解决逻辑矛盾，缺一不可。",
+      "files": []
     }
   ]
 }

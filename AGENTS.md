@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-这是 **ximen-aimazi** 小说创作助手项目（v2.5.0），一个 Agent Skills 兼容的中文网络小说生成工具。
+这是 **ximen-aimazi** 小说创作助手项目（v2.6.0），一个 Agent Skills 兼容的中文网络小说生成工具。
 核心价值：从灵感到成稿的结构化创作流程，内置去AI味白描规范、质量评分、作家技法参考、续写救援和编辑部式审稿。
 
 ## 会话恢复
@@ -54,8 +54,7 @@
 | `PLOT_SUSPENSE.md` | 关键情节+伏笔（活跃/归档分层） | 正文生成后必写 / 大纲/细纲修改后同步 |
 | `RESOURCES.md` | 资源账本（持有/已消耗分层） | 物品/金钱变化时 |
 | `SUBPLOTS.md` | 子剧情板（活跃/休眠/归档分层） | 子剧情激活/休眠时 |
-| `EMOTIONS.md` | 情感弧线（活跃/冷处理分层） | 角色情感发展时 |
-| `EMOTIONS.md` | 情感弧线（活跃/冷处理分层） | 角色情感发展时 |
+| `EMOTIONS.md` | 情感弧线（活跃/冷处理/已完结分层） | 角色情感发展时 |
 | `ERRORS.md` | 错误日志 | 润色评分低于出稿门槛时 |
 | `memory/project_style.md` | 项目级文风圣经 | 开书定调/换卷微调 |
 | `追踪/CHAPTERS.md` | 章节索引 | 正文生成后必写 |
@@ -70,6 +69,8 @@
 - **禁止禁语表高频滥用**：冷笑/颤抖/泛白/勾起弧度/空气凝固
 - **禁止欧化表达**：他很高/作出决定/被激怒
 - **段落不超过4行**
+
+详见 SKILL.md 第 731-754 行与 `references/anti-ai-writing.md`
 
 ## 配置参考
 
@@ -96,6 +97,8 @@
 - 长篇可持续性：`references/long-form-sustainability.md`（200+章节奏管理+世界观扩展）
 - 改稿下游同步：`references/downstream-sync-checklist.md`（7类文件更新规则+格式模板）
 - 改稿终审验证：`references/verification-checklist.md`（10项检查标准+Grep策略）
+
+完整清单见 SKILL.md 参考资料表，含 v2.6 新增的 faction-design.md、timeline-and-naming.md、outline-structure.md、outline-eight-lines.md、outline-conflict-design.md、hook-ending.md、hook-opening.md
 
 ## 输出规范
 

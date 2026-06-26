@@ -16,6 +16,30 @@
     "should_trigger": true
   },
   {
+    "query": "这章主角突然会剑术了，按改稿流水线修复铺垫问题。",
+    "should_trigger": true
+  },
+  {
+    "query": "我这本书卡文了，旧坑填不上，帮我诊断一下接下来怎么写。",
+    "should_trigger": true
+  },
+  {
+    "query": "这本书我要像工作室一样立项，编辑部流水线推进。",
+    "should_trigger": true
+  },
+  {
+    "query": "这是关键高潮章，做一次深度审稿，排长篇隐患。",
+    "should_trigger": true
+  },
+  {
+    "query": "deslop 这段，去 AI 味专项处理，按三遍法来。",
+    "should_trigger": true
+  },
+  {
+    "query": "跨作者接力续写这本书，要保持原作风格指纹。",
+    "should_trigger": true
+  },
+  {
     "query": "给我写一个 Python 脚本统计 CSV 的销售额。",
     "should_trigger": false
   },

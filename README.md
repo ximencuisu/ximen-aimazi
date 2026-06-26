@@ -3,7 +3,7 @@
 中文网文创作 Agent Skill — 从灵感到成稿的结构化创作 + 去 AI 味 + 深度技法 + 续写引擎。
 
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-blue)](https://agentskills.io)
-[![Version](https://img.shields.io/badge/version-v2.5.0-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v2.6.0-green)](./CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## 这是什么
@@ -23,6 +23,7 @@
 - **v2.3.4**：分发可靠性维护 — 单中文入口、客户端展示元数据、参考断链兼容入口与本地校验脚本
 - **v2.4.0 新增**：文风对比学习 — 贴入 AI 原文 + 修改文自动提取 12 条写作规则，续写中段可激活，支持 6 种文风（含 F）
 - **v2.5.0 新增**：架构瘦身与审核内嵌 — Phase 9/11 审核清单内嵌、Phase 10 必读参考降级（减少约 2000 行上下文开销）、续写流程拆出、记忆文件合并、输出范例新增
+- **v2.6.0 新增**：系统性审查完善 — 模板一致性（女频四层读取确认块/workspace 模板对齐）、引用清理（outline-arrangement/hook-techniques 拆分、anti-ai 循环引用清理）、覆盖盲区（faction-design/timeline-and-naming 新增、writing-craft/genre-frameworks/market-methodology 补章）、测试覆盖（evals 20 用例+10 触发用例）、脚本工具（validate-skill.sh/foreshadow-audit/pave-chain-check 跨平台）、文档一致性（EMOTIONS 三层统一/LOCATIONS 阈值统一/配置参考索引补全）
 
 ## 适合什么场景
 

@@ -1,5 +1,7 @@
 # Artifact 创建模板
 
+> 何时加载：Phase 10/12 记忆写入
+
 各 artifact 的标准模板与创建指引。agent 在 Phase 2-3 过渡时按需加载此文件。
 
 **模板列表：**
@@ -168,7 +170,7 @@
 |------|---------|---------|---------------------|
 ```
 
-创建参考：`outline-arrangement.md` L1410 (大纲三层结构法) + L388 (升级感三步设计法) + `emotional-arc-design.md` L21 (六种弧线速查) + `reversal-toolkit.md` L20 (五种反转类型)
+创建参考：`outline-structure.md` (大纲三层结构法) + `outline-structure.md` (升级感三步设计法) + `emotional-arc-design.md` L21 (六种弧线速查) + `reversal-toolkit.md` L20 (五种反转类型)
 
 ---
 

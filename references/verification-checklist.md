@@ -1,5 +1,7 @@
 # 终审验证检查清单
 
+> 何时加载：改稿流水线 Step 5
+
 本文件为 `webnovel-chapter-polish` 技能的 Step 5（Agent 终审验证）提供详细检查标准和 Grep 策略。
 
 ---

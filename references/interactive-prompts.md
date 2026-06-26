@@ -1,5 +1,7 @@
 # 交互提示词模板
 
+> 何时加载：全流程交互提示词
+
 各阶段的结构化决策点交互模板，与 `workflow-interaction.md` 的决策点一一对应。每个决策点遵循 4 要素格式：状态摘要、选项列表、推荐标注、上下文提示。
 
 ---
@@ -294,7 +296,7 @@ B. 粘贴添加（我直接粘贴资料）
 📋 大纲方向选择：
 
 【参考调用策略】
-- 必读：memory/project_style.md / outline-arrangement.md / plot-structures.md / advanced-plot-techniques.md / hook-techniques.md
+- 必读：memory/project_style.md / outline-structure.md / outline-eight-lines.md / outline-conflict-design.md / plot-structures.md / advanced-plot-techniques.md / hook-ending.md / hook-opening.md
 - 文风圣经：{{基础文风 + 主/辅参考}}
 - 本步应用：{{爽点循环 / 期待感链路 / 高潮递进 / 章末钩子策略}}
 
@@ -401,7 +403,7 @@ D. 硬锚点需要调整
 硬锚点：{{硬锚点列表}}
 风险等级：{{风险等级}}
 上下文来源：{{读取文件列表}}
-参考调用清单：memory/project_style.md / chapter-outline.md / hook-techniques.md / advanced-plot-techniques.md
+参考调用清单：memory/project_style.md / chapter-outline.md / hook-ending.md / hook-opening.md / advanced-plot-techniques.md
 本批技法目标：{{爽点类型}} / {{钩子策略}} / {{大神节奏约束}}
 
 ❓ 可以开始生成吗？有没有额外要求？
@@ -577,7 +579,7 @@ AI检测到的润色重点：
 【润色参考调用】
 - 文风圣经：{{基础文风/大神参考}}
 - 质量检查：quality-check.md / quality-checklist.md
-- 去AI味：anti-ai-detection.md / anti-ai-writing.md
+- 去AI味：anti-ai-writing.md
 - 本步技法回拉：{{文风/节奏/对话/钩子}}
 
 去AI味检查预扫描：

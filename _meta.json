@@ -1,7 +1,7 @@
 {
   "ownerId": "ximencuisu",
   "slug": "ximen-aimazi",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "publishedAt": 1781222400000,
-  "changelog": "2.5.0: 架构瘦身与技法内嵌 — Phase 9/11 审核清单内嵌、Phase 10 必读参考降级、续写流程拆出、记忆系统合并、输出范例新增"
+  "changelog": "2.6.0: 系统性审查完善 — 覆盖模板一致性、引用清理、覆盖盲区、测试覆盖、脚本工具、文档一致性 6 大主题，完善 33 项验证点"
 }
